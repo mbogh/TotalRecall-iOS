@@ -26,7 +26,7 @@
     PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            self.incidents = objects;
+            self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
             [self.tableView reloadData];
         } else {
             // Log details of the failure
