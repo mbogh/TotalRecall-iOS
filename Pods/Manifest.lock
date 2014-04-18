@@ -2,12 +2,15 @@ PODS:
   - Facebook-iOS-SDK (3.13.1)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
+  - UIColor-HexString (1.1.0)
 
 DEPENDENCIES:
   - Parse
+  - UIColor-HexString (= 1.1.0)
 
 SPEC CHECKSUMS:
   Facebook-iOS-SDK: 0d121e16437981fabff9379e07bf646bd5ab245c
   Parse: 3739f0b211c49115bad96d6b0969b804d4da2f24
+  UIColor-HexString: 69eb4fc7f3f72d9e8f58566b59b565fa7cbb7130
 
 COCOAPODS: 0.32.1

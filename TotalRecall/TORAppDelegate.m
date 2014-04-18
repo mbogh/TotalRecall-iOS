@@ -18,7 +18,17 @@
     [Parse setApplicationId:@"BfjCrISj7ZfOvYs9XAH7wBZNNPzVNwr3v2t0PuXp" clientKey:@"Z4LKOwj9dtDWNVDqRlObpbqMBGCYvxPY3tMitGeR"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [self applyAppearance];
+    
     return YES;
+}
+
+#pragma mark - Appearance
+
+- (void)applyAppearance {
+    [UINavigationBar appearance].barTintColor = [UIColor colorWithHexString:@"0BD318"];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].barStyle = UIBarStyleBlackOpaque;
 }
 
 @end
