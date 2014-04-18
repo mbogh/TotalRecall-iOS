@@ -17,9 +17,9 @@
 
 @implementation TORIncidentsViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = LS(@"incidents.title");
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
     
