@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TORViewController : UIViewController
+@interface TORIncidentsViewController : UITableViewController
 
 @end
