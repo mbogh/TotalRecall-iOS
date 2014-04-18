@@ -18,10 +18,51 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="5vT-5d-AfY"/>
+                    <connections>
+                        <segue destination="ZaR-fa-29P" kind="push" identifier="TORIncidentViewControllerSegue" id="K5N-X4-rFi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oS-kL-tlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="382" y="390"/>
+        </scene>
+        <!--Incident View Controller-->
+        <scene sceneID="eHc-NZ-jse">
+            <objects>
+                <viewController id="ZaR-fa-29P" customClass="TORIncidentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="37t-aL-UH0"/>
+                        <viewControllerLayoutGuide type="bottom" id="icV-TV-dhz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HlT-Xz-QuF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZq-Z7-p29">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ZaR-fa-29P" id="mFy-zr-Tha"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GZq-Z7-p29" secondAttribute="trailing" id="Fh9-bp-aWq"/>
+                            <constraint firstItem="icV-TV-dhz" firstAttribute="top" secondItem="GZq-Z7-p29" secondAttribute="bottom" id="S9V-Px-FK1"/>
+                            <constraint firstItem="GZq-Z7-p29" firstAttribute="leading" secondItem="HlT-Xz-QuF" secondAttribute="leading" id="TEe-MV-Gdl"/>
+                            <constraint firstItem="GZq-Z7-p29" firstAttribute="top" secondItem="37t-aL-UH0" secondAttribute="bottom" id="vXf-vt-nYz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="G1N-Zc-Lye"/>
+                    <connections>
+                        <outlet property="webView" destination="GZq-Z7-p29" id="Thb-61-OC9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEN-Ud-Y89" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="390"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gfr-iH-Q89">
