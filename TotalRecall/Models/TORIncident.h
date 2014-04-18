@@ -10,7 +10,7 @@
 
 @interface TORIncident : PFObject <PFSubclassing>
 @property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) NSString *link;
+@property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) NSDate *publishedAt;
 + (NSString *)parseClassName;
 @end

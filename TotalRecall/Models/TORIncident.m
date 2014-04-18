@@ -10,21 +10,7 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation TORIncident
-@dynamic title, link, publishedAt;
-
-//#pragma mark - Properties
-//
-//- (NSString *)title {
-//    return self[@"title"];
-//}
-//
-//- (NSString *)link {
-//    return self[@"link"];
-//}
-//
-//- (NSDate *)date {
-//    return self[@"publishedAt"];
-//}
+@dynamic title, url, publishedAt;
 
 #pragma mark - PFSubclassing
 
