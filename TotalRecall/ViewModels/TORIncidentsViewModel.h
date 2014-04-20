@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Morten Bøgh. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "RVMViewModel.h"
 
-@interface TORIncidentsViewModel : NSObject
+@interface TORIncidentsViewModel : RVMViewModel
 @property (strong, readonly, nonatomic) NSArray *incidents;
 @end
