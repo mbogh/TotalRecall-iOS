@@ -27,6 +27,11 @@
     self.tableView.tableFooterView = [UIView new];
     
     self.viewModel = [TORIncidentsViewModel new];
+    @weakify(self);
+    [RACObserve(self.viewModel, incidents) subscribeNext:^(id x) {
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
