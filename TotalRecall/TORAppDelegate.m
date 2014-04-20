@@ -14,13 +14,19 @@
 @implementation TORAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [TORIncident registerSubclass];
-    [Parse setApplicationId:@"BfjCrISj7ZfOvYs9XAH7wBZNNPzVNwr3v2t0PuXp" clientKey:@"Z4LKOwj9dtDWNVDqRlObpbqMBGCYvxPY3tMitGeR"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [self setupParseWithOptions:launchOptions];
     
     [self applyAppearance];
     
     return YES;
+}
+
+#pragma mark - Parse
+
+- (void)setupParseWithOptions:(NSDictionary *)launchOptions {
+    [TORIncident registerSubclass];
+    [Parse setApplicationId:@"BfjCrISj7ZfOvYs9XAH7wBZNNPzVNwr3v2t0PuXp" clientKey:@"Z4LKOwj9dtDWNVDqRlObpbqMBGCYvxPY3tMitGeR"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 }
 
 #pragma mark - Appearance
