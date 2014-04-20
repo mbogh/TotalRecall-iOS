@@ -22,3 +22,5 @@
 
 #define TORBlackTextColor [UIColor colorWithHexString:@"2B2B2B"]
 #define TORGreyTextColor [UIColor colorWithHexString:@"8E8E93"]
+
+#define TORDefaultsPushMessage @"TORDefaultsPushMessage"

@@ -23,6 +23,11 @@
                                 <segue destination="PJp-e6-i5e" kind="modal" id="udn-eD-evl"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="qQb-au-l4W">
+                            <connections>
+                                <action selector="didTouchPushSettingButton:" destination="3TJ-NA-UxF" id="6t8-0G-RsL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="ZaR-fa-29P" kind="push" identifier="TORIncidentViewControllerSegue" id="K5N-X4-rFi"/>

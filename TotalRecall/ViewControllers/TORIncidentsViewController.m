@@ -15,7 +15,7 @@
 
 #import "TORIncidentCell.h"
 
-@interface TORIncidentsViewController ()
+@interface TORIncidentsViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) TORIncidentsViewModel *viewModel;
 @end
 
@@ -33,6 +33,43 @@
         @strongify(self);
         [self.tableView reloadData];
     }];
+}
+
+#pragma mark - Actions
+
+- (IBAction)didTouchPushSettingButton:(UIBarButtonItem *)sender {
+    NSString *title, *action;
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
+        title = LS(@"incidents.push.actionsheet.enable.title");
+        action = LS(@"incidents.push.actionsheet.enable");
+    }
+    else {
+        title = LS(@"incidents.push.actionsheet.disable.title");
+        action = LS(@"incidents.push.actionsheet.disable");
+    }
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
+                                                             delegate:self
+                                                    cancelButtonTitle:LS(@"incidents.push.actionsheet.cancel")
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:action, nil];
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet.cancelButtonIndex != buttonIndex) {
+        BOOL isPushMessagesEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
+        if (isPushMessagesEnabled) {
+            [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+        }
+        else {
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:!isPushMessagesEnabled forKey:TORDefaultsPushMessage];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 #pragma mark - UITableViewDataSource

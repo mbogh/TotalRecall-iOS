@@ -7,6 +7,11 @@
 */
 
 "incidents.title" = "Nyeste sager";
+"incidents.push.actionsheet.enable.title" = "Modtag push-beskeder når der kommer nye sager om tilbagetrukne fødevarer.";
+"incidents.push.actionsheet.disable.title" = "Stop med at modtage push-beskeder når der kommer nye sager om tilbagetrukne fødevarer.";
+"incidents.push.actionsheet.cancel" = "Annuller";
+"incidents.push.actionsheet.enable" = "Slå push-beskeder til";
+"incidents.push.actionsheet.disable" = "Slå push-beskeder fra";
 
 "about.title" = "Om";
 "about.name" = "Morten Bøgh";

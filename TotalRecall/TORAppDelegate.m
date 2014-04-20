@@ -13,12 +13,28 @@
 
 @implementation TORAppDelegate
 
+#pragma mark - UIApplicationDelegate
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setupParseWithOptions:launchOptions];
-    
     [self applyAppearance];
     
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{TORDefaultsPushMessage: @(NO)}];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
+        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+    }
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 #pragma mark - Parse
