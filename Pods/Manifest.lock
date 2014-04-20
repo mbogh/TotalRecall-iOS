@@ -2,15 +2,27 @@ PODS:
   - Facebook-iOS-SDK (3.13.1)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
+  - ReactiveCocoa (2.3):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.3):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.3)
+  - ReactiveViewModel (0.2):
+    - ReactiveCocoa (~> 2.1)
   - UIColor-HexString (1.1.0)
 
 DEPENDENCIES:
   - Parse
+  - ReactiveCocoa
+  - ReactiveViewModel
   - UIColor-HexString (= 1.1.0)
 
 SPEC CHECKSUMS:
   Facebook-iOS-SDK: 0d121e16437981fabff9379e07bf646bd5ab245c
   Parse: 3739f0b211c49115bad96d6b0969b804d4da2f24
+  ReactiveCocoa: 1f6265f9d521923d3efcc37b00722cefc16df269
+  ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
   UIColor-HexString: 69eb4fc7f3f72d9e8f58566b59b565fa7cbb7130
 
 COCOAPODS: 0.32.1

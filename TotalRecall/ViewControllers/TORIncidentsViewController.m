@@ -9,12 +9,13 @@
 #import "TORIncidentsViewController.h"
 #import "TORIncidentViewController.h"
 
+#import "TORIncidentsViewModel.h"
 #import "TORIncident.h"
 
 #import "TORIncidentCell.h"
 
 @interface TORIncidentsViewController ()
-@property (strong, nonatomic) NSArray *incidents;
+@property (strong, nonatomic) TORIncidentsViewModel *viewModel;
 @end
 
 @implementation TORIncidentsViewController
@@ -25,27 +26,18 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
     
-    PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
-            [self.tableView reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    self.viewModel = [TORIncidentsViewModel new];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.incidents.count;
+    return self.viewModel.incidents.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TORIncidentCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(TORIncidentCell.class) forIndexPath:indexPath];
-    TORIncident *incident = self.incidents[indexPath.row];
+    TORIncident *incident = self.viewModel.incidents[indexPath.row];
     [cell configureWithIncident:incident];
     return cell;
 }
@@ -53,7 +45,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TORIncident *incident = self.incidents[indexPath.row];
+    TORIncident *incident = self.viewModel.incidents[indexPath.row];
     [self performSegueWithIdentifier:@"TORIncidentViewControllerSegue" sender:incident];
 }
 
