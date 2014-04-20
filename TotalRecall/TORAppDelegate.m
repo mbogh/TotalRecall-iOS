@@ -34,7 +34,7 @@
 - (void)applyAppearance {
     [UINavigationBar appearance].barTintColor = [UIColor colorWithHexString:@"0BD318"];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [UINavigationBar appearance].barStyle = UIBarStyleBlackOpaque;
+    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
 }
 
 @end
