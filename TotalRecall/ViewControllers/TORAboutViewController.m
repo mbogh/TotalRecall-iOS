@@ -9,6 +9,9 @@
 #import "TORAboutViewController.h"
 
 @interface TORAboutViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
 
@@ -17,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = LS(@"about.title");
+    self.nameLabel.text = LS(@"about.name");
+    self.descriptionLabel.text = LS(@"about.description");
 }
 
 #pragma mark - Actions
