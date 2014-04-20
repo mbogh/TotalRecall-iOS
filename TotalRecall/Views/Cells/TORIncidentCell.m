@@ -13,8 +13,8 @@
 @implementation TORIncidentCell
 
 - (void)awakeFromNib {
-    self.textLabel.textColor = [UIColor colorWithHexString:@"2B2B2B"];
-    self.detailTextLabel.textColor = [UIColor colorWithHexString:@"8E8E93"];
+    self.textLabel.textColor = TORBlackTextColor;
+    self.detailTextLabel.textColor = TORGreyTextColor;
 }
 
 #pragma mark - Configuration

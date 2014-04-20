@@ -21,7 +21,10 @@
     [super viewDidLoad];
     self.title = LS(@"about.title");
     self.nameLabel.text = LS(@"about.name");
+    self.nameLabel.textColor = TORBlackTextColor;
+    
     self.descriptionLabel.text = LS(@"about.description");
+    self.descriptionLabel.textColor = TORGreyTextColor;
 }
 
 #pragma mark - Actions
