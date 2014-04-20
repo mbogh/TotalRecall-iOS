@@ -14,6 +14,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "UIColor+HexString.h"
+    #import <ReactiveCocoa/ReactiveCocoa.h>
+    #import "RACEXTScope.h"
 #endif
 
 #define LS(key) NSLocalizedString(key, nil)
