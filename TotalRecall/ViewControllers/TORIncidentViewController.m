@@ -8,7 +8,7 @@
 
 #import "TORIncidentViewController.h"
 
-#import "TORIncident.h"
+#import "TORIncidentViewModel.h"
 
 @interface TORIncidentViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -19,9 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = self.incident.title;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.incident.url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]]];
-    [self.webView loadRequest:request];
+    
+    RAC(self, title) = RACObserve(self.viewModel, title);
+    
+    @weakify(self);
+    [RACObserve(self.viewModel, incidentURL) subscribeNext:^(id x) {
+        @strongify(self);
+        [self.webView loadRequest:[NSURLRequest requestWithURL:x]];
+    }];
 }
 
 #pragma mark - UIWebViewDelegate

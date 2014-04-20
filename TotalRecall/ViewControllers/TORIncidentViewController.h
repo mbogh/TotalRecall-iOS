@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class TORIncident;
+@class TORIncidentViewModel;
 @interface TORIncidentViewController : UIViewController
-@property (strong, nonatomic) TORIncident *incident;
+@property (strong, nonatomic) TORIncidentViewModel *viewModel;
 @end

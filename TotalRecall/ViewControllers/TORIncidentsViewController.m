@@ -10,6 +10,7 @@
 #import "TORIncidentViewController.h"
 
 #import "TORIncidentsViewModel.h"
+#import "TORIncidentViewModel.h"
 #import "TORIncident.h"
 
 #import "TORIncidentCell.h"
@@ -61,7 +62,7 @@
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ((TORIncidentViewController *)segue.destinationViewController).incident = sender;
+    ((TORIncidentViewController *)segue.destinationViewController).viewModel = [[TORIncidentViewModel alloc] initWithIncident:sender];
 }
 
 @end
