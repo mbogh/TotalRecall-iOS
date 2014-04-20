@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = LS(@"about.title");
 }
 
 #pragma mark - Actions

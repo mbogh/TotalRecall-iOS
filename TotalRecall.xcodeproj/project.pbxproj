@@ -76,6 +76,7 @@
 		5A9E09E9190400E1009B450A /* TORIncidentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORIncidentViewModel.m; sourceTree = "<group>"; };
 		5A9E09EB190407E9009B450A /* TORAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORAboutViewController.h; sourceTree = "<group>"; };
 		5A9E09EC190407E9009B450A /* TORAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORAboutViewController.m; sourceTree = "<group>"; };
+		5A9E09EE19040BA1009B450A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4A86F021E4B4F3591CC85B1 /* libPods-TotalRecall.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TotalRecall.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB9E5F7AF24B4934A35334BB /* Pods-TotalRecall.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TotalRecall.xcconfig"; path = "Pods/Pods-TotalRecall.xcconfig"; sourceTree = "<group>"; };
 		F7B4750DC3D94728BB6CF3D3 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -439,6 +440,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5A9E09DF1901ADA1009B450A /* da */,
+				5A9E09EE19040BA1009B450A /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
