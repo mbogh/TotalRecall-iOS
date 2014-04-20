@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Incidents View Controller - Root View Controller-->
+        <!--Incidents View Controller - Incidents-->
         <scene sceneID="Amj-ym-Ihh">
             <objects>
                 <tableViewController id="3TJ-NA-UxF" customClass="TORIncidentsViewController" sceneMemberID="viewController">
@@ -17,7 +17,13 @@
                             <outlet property="delegate" destination="3TJ-NA-UxF" id="qxT-zi-I9m"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="5vT-5d-AfY"/>
+                    <navigationItem key="navigationItem" title="Incidents" id="5vT-5d-AfY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="cd7-cd-1al">
+                            <connections>
+                                <segue destination="PJp-e6-i5e" kind="modal" id="udn-eD-evl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="ZaR-fa-29P" kind="push" identifier="TORIncidentViewControllerSegue" id="K5N-X4-rFi"/>
                     </connections>
@@ -26,7 +32,47 @@
             </objects>
             <point key="canvasLocation" x="382" y="390"/>
         </scene>
-        <!--Incident View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="2nB-sh-nVz">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="PJp-e6-i5e" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PiX-Xq-Axb">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="COf-7C-cd4" kind="relationship" relationship="rootViewController" id="vEg-hU-0ye"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywz-cf-TtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="382" y="-285"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="XlM-dx-1gi">
+            <objects>
+                <viewController id="COf-7C-cd4" customClass="TORAboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VQE-sz-LZx"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Y2-G0-NgS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UbF-9g-keC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VJw-8b-kwN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="wAP-H8-ycq">
+                            <connections>
+                                <action selector="didTouchDoneButton:" destination="COf-7C-cd4" id="rtN-la-GmM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gj2-B4-gr0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="-285"/>
+        </scene>
+        <!--Incident View Controller - Incident-->
         <scene sceneID="eHc-NZ-jse">
             <objects>
                 <viewController id="ZaR-fa-29P" customClass="TORIncidentViewController" sceneMemberID="viewController">
@@ -55,7 +101,7 @@
                             <constraint firstItem="GZq-Z7-p29" firstAttribute="top" secondItem="37t-aL-UH0" secondAttribute="bottom" id="vXf-vt-nYz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="G1N-Zc-Lye"/>
+                    <navigationItem key="navigationItem" title="Incident" id="G1N-Zc-Lye"/>
                     <connections>
                         <outlet property="webView" destination="GZq-Z7-p29" id="Thb-61-OC9"/>
                     </connections>
