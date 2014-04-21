@@ -18,12 +18,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Incidents" id="5vT-5d-AfY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="cd7-cd-1al">
+                        <barButtonItem key="leftBarButtonItem" image="882-mug" id="cd7-cd-1al">
                             <connections>
                                 <segue destination="PJp-e6-i5e" kind="modal" id="udn-eD-evl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="qQb-au-l4W">
+                        <barButtonItem key="rightBarButtonItem" image="793-service-bell" id="qQb-au-l4W">
                             <connections>
                                 <action selector="didTouchPushSettingButton:" destination="3TJ-NA-UxF" id="6t8-0G-RsL"/>
                             </connections>
@@ -184,6 +184,10 @@
             <point key="canvasLocation" x="-152" y="390"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="793-service-bell" width="28" height="19"/>
+        <image name="882-mug" width="28" height="28"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
