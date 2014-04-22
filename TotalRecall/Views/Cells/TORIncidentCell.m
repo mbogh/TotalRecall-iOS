@@ -10,18 +10,24 @@
 
 #import "TORIncident.h"
 
+@interface TORIncidentCell ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@end
+
 @implementation TORIncidentCell
 
 - (void)awakeFromNib {
-    self.textLabel.textColor = TORBlackTextColor;
-    self.detailTextLabel.textColor = TORGreyTextColor;
+    self.titleLabel.textColor = TORBlackTextColor;
+    self.dateLabel.textColor = TORGreyTextColor;
 }
 
 #pragma mark - Configuration
 
 - (void)configureWithIncident:(TORIncident *)incident {
-    self.textLabel.text = incident.title;
-    self.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:incident.publishedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    self.titleLabel.text = incident.title;
+    self.dateLabel.text = [NSDateFormatter localizedStringFromDate:incident.publishedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
 }
 
 @end

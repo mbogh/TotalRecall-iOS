@@ -17,6 +17,7 @@
 
 @interface TORIncidentsViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) TORIncidentsViewModel *viewModel;
+@property (strong, nonatomic) TORIncidentCell *incidentCell;
 @end
 
 @implementation TORIncidentsViewController
@@ -26,6 +27,8 @@
     self.title = LS(@"incidents.title");
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
+    
+    self.incidentCell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([TORIncidentCell class]) owner:nil options:nil] firstObject];
     
     self.viewModel = [TORIncidentsViewModel new];
     @weakify(self);
@@ -93,7 +96,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 52.f;
+    CGFloat rowHeight = 0.f;
+    TORIncident *incident = self.viewModel.incidents[indexPath.row];
+    [self.incidentCell configureWithIncident:incident];
+    [self.incidentCell setNeedsUpdateConstraints];
+    [self.incidentCell updateConstraintsIfNeeded];
+    
+    self.incidentCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(self.incidentCell.bounds));
+    [self.incidentCell setNeedsLayout];
+    [self.incidentCell layoutIfNeeded];
+    
+    rowHeight = [self.incidentCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    rowHeight += 1.0f;
+    return rowHeight;
 }
 
 #pragma mark - Segue
