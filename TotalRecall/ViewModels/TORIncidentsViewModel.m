@@ -21,6 +21,7 @@
     if (self) {
         self.incidents = [self cachedIncidents];
         PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
+        query.limit = 20;
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
