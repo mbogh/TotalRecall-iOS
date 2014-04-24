@@ -24,3 +24,4 @@
 #define TORGreyTextColor [UIColor colorWithHexString:@"8E8E93"]
 
 #define TORDefaultsPushMessage @"TORDefaultsPushMessage"
+#define TORDefaultsIncidentsCache @"TORDefaultsIncidentsCache"
