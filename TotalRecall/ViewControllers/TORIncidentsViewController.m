@@ -92,7 +92,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TORIncident *incident = self.viewModel.incidents[indexPath.row];
-    [self performSegueWithIdentifier:@"TORIncidentViewControllerSegue" sender:incident];
+    TORIncidentViewModel *incidentViewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
+    
+    [RACObserve(incidentViewModel, incidentURL) subscribeNext:^(id x) {
+        [[UIApplication sharedApplication] openURL:x];
+    }];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [self performSegueWithIdentifier:@"TORIncidentViewControllerSegue" sender:incident];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
