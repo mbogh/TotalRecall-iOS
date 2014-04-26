@@ -23,7 +23,16 @@
     self.nameLabel.text = LS(@"about.name");
     self.nameLabel.textColor = TORBlackTextColor;
     
-    self.descriptionLabel.text = LS(@"about.description");
+    NSMutableAttributedString *descriptionString = [[NSMutableAttributedString alloc] initWithString:LS(@"about.description")];
+    [descriptionString insertAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n" attributes:nil] atIndex:descriptionString.length];
+    
+    [descriptionString insertAttributedString:[[NSAttributedString alloc] initWithString:LS(@"about.version.title") attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:self.descriptionLabel.font.pointSize]}] atIndex:descriptionString.length];
+    
+    [descriptionString insertAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil] atIndex:descriptionString.length];
+    
+    [descriptionString insertAttributedString:[[NSAttributedString alloc] initWithString:LS(@"about.version.description") attributes:nil] atIndex:descriptionString.length];
+    
+    self.descriptionLabel.attributedText = descriptionString;
     self.descriptionLabel.textColor = TORGreyTextColor;
 }
 
