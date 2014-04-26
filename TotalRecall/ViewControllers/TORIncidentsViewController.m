@@ -28,6 +28,13 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [[self.refreshControl rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UIRefreshControl *refreshControl) {
+        if (refreshControl.isRefreshing) {
+            [self.viewModel downloadLatestIncidents];
+        }
+    }];
+    
     self.incidentCell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([TORIncidentCell class]) owner:nil options:nil] firstObject];
     
     self.viewModel = [TORIncidentsViewModel new];
@@ -36,11 +43,31 @@
         @strongify(self);
         [self.tableView reloadData];
     }];
+    
+    [RACObserve(self.viewModel, loading) subscribeNext:^(NSNumber *x) {
+        BOOL isLoading = x.boolValue;
+        if (isLoading) {
+            [self.refreshControl beginRefreshing];
+            if (self.tableView.contentOffset.y == -64.f) {
+                [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+            }
+        }
+        else {
+            [self.refreshControl endRefreshing];
+        }
+    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.viewModel.active = YES;
 }
 
 #pragma mark - Actions
 
 - (IBAction)didTouchPushSettingButton:(UIBarButtonItem *)sender {
+    [self.viewModel downloadLatestIncidents];
+    return;
     NSString *title, *action;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
         title = LS(@"incidents.push.actionsheet.enable.title");

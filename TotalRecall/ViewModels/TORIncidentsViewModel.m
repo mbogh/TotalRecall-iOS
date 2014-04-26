@@ -12,6 +12,7 @@
 
 @interface TORIncidentsViewModel ()
 @property (strong, nonatomic) NSArray *incidents;
+@property (assign, nonatomic, getter = isLoading) BOOL loading;
 @end
 
 @implementation TORIncidentsViewModel
@@ -20,18 +21,33 @@
     self = [super init];
     if (self) {
         self.incidents = [self cachedIncidents];
-        PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
-        query.limit = 20;
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
-                [self cacheIncidents:self.incidents];
-            } else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
+        self.loading = NO;
+        
+        @weakify(self);
+        [self.didBecomeActiveSignal subscribeNext:^(id x) {
+            @strongify(self);
+            [self downloadLatestIncidents];
         }];
     }
     return self;
+}
+
+#pragma mark - Download
+
+- (void)downloadLatestIncidents {
+    self.loading = YES;
+    
+    PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
+    query.limit = 20;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
+            [self cacheIncidents:self.incidents];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        self.loading = NO;
+    }];
 }
 
 #pragma mark - Incidents cache
