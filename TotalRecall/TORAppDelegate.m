@@ -19,7 +19,7 @@
     [self setupParseWithOptions:launchOptions];
     [self applyAppearance];
     
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{TORDefaultsPushMessage: @(NO)}];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{TORDefaultsPushMessage: @(NO), TORDefaultsLastSyncDate: [NSDate dateWithTimeIntervalSince1970:0]}];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
         [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
     }

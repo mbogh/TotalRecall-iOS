@@ -60,7 +60,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.viewModel.active = YES;
+    if (!self.viewModel.isActive) {
+        self.viewModel.active = YES;
+    }
+    else if ([[[NSUserDefaults standardUserDefaults] objectForKey:TORDefaultsLastSyncDate] timeIntervalSinceNow] < 1.f*60.f*60.f) {
+        [self.viewModel downloadLatestIncidents];
+    }
 }
 
 #pragma mark - Actions

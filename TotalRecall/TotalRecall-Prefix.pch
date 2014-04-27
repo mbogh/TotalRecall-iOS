@@ -25,3 +25,4 @@
 
 #define TORDefaultsPushMessage @"TORDefaultsPushMessage"
 #define TORDefaultsIncidentsCache @"TORDefaultsIncidentsCache"
+#define TORDefaultsLastSyncDate @"TORDefaultsLastSyncDate"

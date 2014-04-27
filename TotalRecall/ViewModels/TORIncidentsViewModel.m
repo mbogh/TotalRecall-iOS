@@ -40,6 +40,8 @@
     PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
     query.limit = 20;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:TORDefaultsLastSyncDate];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         if (!error) {
             self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
             [self cacheIncidents:self.incidents];
