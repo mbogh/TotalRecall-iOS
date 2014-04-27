@@ -66,8 +66,6 @@
 #pragma mark - Actions
 
 - (IBAction)didTouchPushSettingButton:(UIBarButtonItem *)sender {
-    [self.viewModel downloadLatestIncidents];
-    return;
     NSString *title, *action;
     if (![[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
         title = LS(@"incidents.push.actionsheet.enable.title");
