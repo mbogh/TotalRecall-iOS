@@ -63,7 +63,7 @@
     if (!self.viewModel.isActive) {
         self.viewModel.active = YES;
     }
-    else if ([[[NSUserDefaults standardUserDefaults] objectForKey:TORDefaultsLastSyncDate] timeIntervalSinceNow] < 1.f*60.f*60.f) {
+    else if ([[[NSUserDefaults standardUserDefaults] objectForKey:TORDefaultsLastSyncDate] timeIntervalSinceNow] > 1.f*60.f*60.f) {
         [self.viewModel downloadLatestIncidents];
     }
 }
