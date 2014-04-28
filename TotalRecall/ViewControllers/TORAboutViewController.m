@@ -10,8 +10,8 @@
 
 @interface TORAboutViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *twitterButton;
 
 @end
 
@@ -20,8 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = LS(@"about.title");
-    self.nameLabel.text = LS(@"about.name");
-    self.nameLabel.textColor = TORBlackTextColor;
+    [self.twitterButton setTitle:LS(@"about.twitter") forState:UIControlStateNormal];
+    [self.twitterButton setTitleColor:TORBlackTextColor forState:UIControlStateNormal];
     
     NSMutableAttributedString *descriptionString = [[NSMutableAttributedString alloc] initWithString:LS(@"about.description")];
     [descriptionString insertAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n" attributes:nil] atIndex:descriptionString.length];
@@ -42,5 +42,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)didTouchTwitterButton:(UIButton *)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/mbogh"]];
+}
 
 @end
