@@ -8,6 +8,7 @@
 
 #import "TORAppDelegate.h"
 
+#import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
 #import "TORIncident.h"
 
@@ -16,6 +17,7 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Crashlytics startWithAPIKey:@"91cee469acb56fb41becc68f4429e6c5bd9ba669"];
     [self setupParseWithOptions:launchOptions];
     [self applyAppearance];
     
