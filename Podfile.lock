@@ -18,7 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - Parse
-  - Parse+NSCoding (= 0.1.4)
+  - Parse+NSCoding
   - ReactiveCocoa
   - ReactiveViewModel
   - UIColor-HexString (= 1.1.0)
