@@ -18,7 +18,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Incidents" id="5vT-5d-AfY">
-                        <barButtonItem key="leftBarButtonItem" image="882-mug" id="cd7-cd-1al">
+                        <barButtonItem key="leftBarButtonItem" image="724-info" id="cd7-cd-1al">
                             <connections>
                                 <segue destination="PJp-e6-i5e" kind="modal" id="udn-eD-evl"/>
                             </connections>
@@ -187,8 +187,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="724-info" width="28" height="28"/>
         <image name="793-service-bell" width="28" height="19"/>
-        <image name="882-mug" width="28" height="28"/>
         <image name="me" width="160" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
