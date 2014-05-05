@@ -23,7 +23,7 @@
                                 <segue destination="PJp-e6-i5e" kind="modal" id="udn-eD-evl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="793-service-bell" id="qQb-au-l4W">
+                        <barButtonItem key="rightBarButtonItem" image="756-bell" id="qQb-au-l4W">
                             <connections>
                                 <action selector="didTouchPushSettingButton:" destination="3TJ-NA-UxF" id="6t8-0G-RsL"/>
                             </connections>
@@ -188,7 +188,7 @@
     </scenes>
     <resources>
         <image name="724-info" width="28" height="28"/>
-        <image name="793-service-bell" width="28" height="19"/>
+        <image name="756-bell" width="24" height="28"/>
         <image name="me" width="160" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
