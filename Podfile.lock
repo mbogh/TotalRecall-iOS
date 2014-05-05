@@ -1,5 +1,9 @@
 PODS:
-  - Facebook-iOS-SDK (3.13.1)
+  - Bolts (1.1.0)
+  - Expecta (0.3.0)
+  - Facebook-iOS-SDK (3.14.0):
+    - Bolts
+  - OCMock (2.2.4)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
   - Parse+NSCoding (0.1.4):
@@ -14,22 +18,30 @@ PODS:
   - ReactiveCocoa/no-arc (2.3)
   - ReactiveViewModel (0.2):
     - ReactiveCocoa (~> 2.1)
+  - Specta (0.2.1)
   - UIColor-HexString (1.1.0)
 
 DEPENDENCIES:
+  - Expecta (~> 0.2)
+  - OCMock (~> 2.2.2)
   - Parse
   - Parse+NSCoding
   - ReactiveCocoa
   - ReactiveViewModel
+  - Specta (~> 0.2.1)
   - UIColor-HexString (= 1.1.0)
 
 SPEC CHECKSUMS:
-  Facebook-iOS-SDK: 47ae9e54684c84f93d75d4e6ab47cd031abdf406
+  Bolts: dc620a31cf67c29bce3e3d14a07a12e797a1a154
+  Expecta: 322f1dc42610106a5ba9871b4924cf1635d80833
+  Facebook-iOS-SDK: 63e19ff8d275d63b765819f492a4e71e445f9822
+  OCMock: 5008fae4b4789b8fc3e48cd7660f2eb5ef8ce89e
   Parse: 3739f0b211c49115bad96d6b0969b804d4da2f24
   Parse+NSCoding: 26e5e1e9b05204c3bb130cb4a386a98414c6f2c4
   Parse-iOS-SDK: 48e366fb9a8956c4e50d93cfd16243176938fae1
   ReactiveCocoa: 1f6265f9d521923d3efcc37b00722cefc16df269
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
+  Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
   UIColor-HexString: 69eb4fc7f3f72d9e8f58566b59b565fa7cbb7130
 
 COCOAPODS: 0.32.1
