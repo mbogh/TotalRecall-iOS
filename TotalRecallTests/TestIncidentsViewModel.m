@@ -26,7 +26,7 @@
 
 - (void)testIfDownloadLatestIncidentsIsCalled {
     __block BOOL downloadLatestIncidentsCalled = NO;
-    [TORIncidentsViewModel aspect_hookSelector:@selector(downloadLatestIncidents) withOptions:AspectPositionAfter usingBlock:^(id instance, NSArray *args) {
+    [TORIncidentsViewModel aspect_hookSelector:@selector(downloadLatestIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id instance, NSArray *args) {
         downloadLatestIncidentsCalled = YES;
     } error:NULL];
     TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
