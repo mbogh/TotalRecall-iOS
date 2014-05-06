@@ -10,6 +10,10 @@
 #import <Aspects/Aspects.h>
 #import "TORIncidentsViewModel.h"
 
+@interface TORIncidentsViewModel (Private)
+- (NSArray *)cachedIncidents;
+@end
+
 @interface TestIncidentsViewModel : XCTestCase
 
 @end
@@ -34,6 +38,15 @@
     
     viewModel.active = YES;
     XCTAssertTrue(downloadLatestIncidentsCalled, @"downloadLatestIncidents should be called after being activated.");
+}
+
+- (void)testIfCachedIncidentsIsCalled {
+    __block BOOL cachedIncidentsCalled = NO;
+    [TORIncidentsViewModel aspect_hookSelector:@selector(cachedIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id instance, NSArray *args) {
+        cachedIncidentsCalled = YES;
+    } error:NULL];
+    __unused TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
+    XCTAssertTrue(cachedIncidentsCalled, @"cachedIncidents should be called during init.");
 }
 
 @end
