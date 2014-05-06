@@ -6,17 +6,11 @@
 // project.
 
 
-// Expecta
-#define COCOAPODS_POD_AVAILABLE_Expecta
-#define COCOAPODS_VERSION_MAJOR_Expecta 0
-#define COCOAPODS_VERSION_MINOR_Expecta 3
-#define COCOAPODS_VERSION_PATCH_Expecta 0
-
-// OCMock
-#define COCOAPODS_POD_AVAILABLE_OCMock
-#define COCOAPODS_VERSION_MAJOR_OCMock 2
-#define COCOAPODS_VERSION_MINOR_OCMock 2
-#define COCOAPODS_VERSION_PATCH_OCMock 4
+// Aspects
+#define COCOAPODS_POD_AVAILABLE_Aspects
+#define COCOAPODS_VERSION_MAJOR_Aspects 1
+#define COCOAPODS_VERSION_MINOR_Aspects 3
+#define COCOAPODS_VERSION_PATCH_Aspects 1
 
 // ReactiveCocoa
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
@@ -30,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 3
 #define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 0
 
+// ReactiveCocoa/UI
+#define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_UI
+#define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_UI 2
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_UI 3
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_UI 0
+
 // ReactiveCocoa/no-arc
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_no_arc
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
@@ -41,12 +41,6 @@
 #define COCOAPODS_VERSION_MAJOR_ReactiveViewModel 0
 #define COCOAPODS_VERSION_MINOR_ReactiveViewModel 2
 #define COCOAPODS_VERSION_PATCH_ReactiveViewModel 0
-
-// Specta
-#define COCOAPODS_POD_AVAILABLE_Specta
-#define COCOAPODS_VERSION_MAJOR_Specta 0
-#define COCOAPODS_VERSION_MINOR_Specta 2
-#define COCOAPODS_VERSION_PATCH_Specta 1
 
 // UIColor-HexString
 #define COCOAPODS_POD_AVAILABLE_UIColor_HexString
