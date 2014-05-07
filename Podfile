@@ -10,8 +10,10 @@ target "TotalRecall" do
 end
 
 target "TotalRecallTests" do
-    pod 'ReactiveCocoa'
-    pod 'ReactiveViewModel'
+    pod 'Parse'
     pod 'UIColor-HexString', '= 1.1.0'
     pod 'Aspects'
+    pod 'ReactiveCocoa'
+    pod 'ReactiveViewModel'
+    pod 'OCMock'
 end

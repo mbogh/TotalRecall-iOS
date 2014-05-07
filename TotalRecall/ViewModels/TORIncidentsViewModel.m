@@ -13,6 +13,7 @@
 @interface TORIncidentsViewModel ()
 @property (strong, nonatomic) NSArray *incidents;
 @property (assign, nonatomic, getter = isLoading) BOOL loading;
+@property (strong, nonatomic) PFQuery *query;
 @end
 
 @implementation TORIncidentsViewModel
@@ -22,6 +23,8 @@
     if (self) {
         self.incidents = [self cachedIncidents];
         self.loading = NO;
+        self.query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
+        self.query.limit = 20;
         
         @weakify(self);
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
@@ -36,10 +39,7 @@
 
 - (void)downloadLatestIncidents {
     self.loading = YES;
-    
-    PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
-    query.limit = 20;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [self.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:TORDefaultsLastSyncDate];
         [[NSUserDefaults standardUserDefaults] synchronize];
         if (!error) {
