@@ -10,6 +10,8 @@
 
 #import <Crashlytics/Crashlytics.h>
 #import <Parse/Parse.h>
+#import <Aspects/Aspects.h>
+
 #import "TORIncident.h"
 
 @implementation TORAppDelegate
@@ -19,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Crashlytics startWithAPIKey:@"91cee469acb56fb41becc68f4429e6c5bd9ba669"];
     [self setupParseWithOptions:launchOptions];
+    [self setupParseAnalytics];
     [self applyAppearance];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{TORDefaultsPushMessage: @(NO), TORDefaultsLastSyncDate: [NSDate dateWithTimeIntervalSince1970:0]}];
@@ -48,6 +51,14 @@
     [PFUser enableAutomaticUser];
     PFACL *defaultACL = [PFACL ACL];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+}
+
+- (void)setupParseAnalytics {
+    [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(UIViewController *viewController, NSArray *arguments) {
+        if (viewController.title && viewController.title.length > 0) {
+            [PFAnalytics trackEvent:TORAnalyticsEventViewWillAppear dimensions:@{@"Title": viewController.title}];
+        }
+    } error:nil];
 }
 
 #pragma mark - Appearance
