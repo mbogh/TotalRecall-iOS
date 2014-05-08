@@ -312,6 +312,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Morten Bøgh";
 				TargetAttributes = {
+					5A844C3E19010AEC00F9F4B9 = {
+						DevelopmentTeam = 6Y3N739X56;
+					};
 					5A844C5F19010AEC00F9F4B9 = {
 						TestTargetID = 5A844C3E19010AEC00F9F4B9;
 					};
@@ -607,7 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
