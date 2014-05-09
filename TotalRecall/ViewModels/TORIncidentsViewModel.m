@@ -23,6 +23,11 @@
     if (self) {
         self.incidents = [self cachedIncidents];
         self.loading = NO;
+        self.pushEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
+        [RACObserve(self, pushEnabled) subscribeNext:^(NSNumber *flag) {
+            [[NSUserDefaults standardUserDefaults] setBool:flag.boolValue forKey:TORDefaultsPushMessage];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
         self.query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
         self.query.limit = 20;
         

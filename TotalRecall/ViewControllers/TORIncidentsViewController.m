@@ -72,13 +72,13 @@
 
 - (IBAction)didTouchPushSettingButton:(UIBarButtonItem *)sender {
     NSString *title, *action;
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
-        title = LS(@"incidents.push.actionsheet.enable.title");
-        action = LS(@"incidents.push.actionsheet.enable");
-    }
-    else {
+    if (self.viewModel.isPushEnabled) {
         title = LS(@"incidents.push.actionsheet.disable.title");
         action = LS(@"incidents.push.actionsheet.disable");
+    }
+    else {
+        title = LS(@"incidents.push.actionsheet.enable.title");
+        action = LS(@"incidents.push.actionsheet.enable");
     }
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
@@ -93,15 +93,13 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet.cancelButtonIndex != buttonIndex) {
-        BOOL isPushMessagesEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
-        if (isPushMessagesEnabled) {
+        if (self.viewModel.isPushEnabled) {
             [[UIApplication sharedApplication] unregisterForRemoteNotifications];
         }
         else {
             [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
         }
-        [[NSUserDefaults standardUserDefaults] setBool:!isPushMessagesEnabled forKey:TORDefaultsPushMessage];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.viewModel.pushEnabled = !self.viewModel.isPushEnabled;
     }
 }
 

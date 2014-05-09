@@ -11,5 +11,6 @@
 @interface TORIncidentsViewModel : RVMViewModel
 @property (strong, readonly, nonatomic) NSArray *incidents;
 @property (assign, readonly, nonatomic, getter = isLoading) BOOL loading;
+@property (assign, nonatomic, getter = isPushEnabled) BOOL pushEnabled;
 - (void)downloadLatestIncidents;
 @end
