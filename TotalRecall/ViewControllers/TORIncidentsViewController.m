@@ -44,9 +44,8 @@
         [self.tableView reloadData];
     }];
     
-    [RACObserve(self.viewModel, loading) subscribeNext:^(NSNumber *x) {
-        BOOL isLoading = x.boolValue;
-        if (isLoading) {
+    [RACObserve(self.viewModel, loading) subscribeNext:^(NSNumber *isLoading) {
+        if (isLoading.boolValue) {
             [self.refreshControl beginRefreshing];
             if (self.tableView.contentOffset.y == -64.f) {
                 [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
