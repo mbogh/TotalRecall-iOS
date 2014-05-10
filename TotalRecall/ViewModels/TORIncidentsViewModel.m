@@ -23,7 +23,7 @@
     if (self) {
         self.incidents = [self cachedIncidents];
         self.loading = NO;
-        self.pushEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
+        _pushEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
         [RACObserve(self, pushEnabled) subscribeNext:^(NSNumber *flag) {
             [[NSUserDefaults standardUserDefaults] setBool:flag.boolValue forKey:TORDefaultsPushMessage];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -71,11 +71,14 @@
 #pragma mark - Push
 
 - (void)setPushEnabled:(BOOL)pushEnabled {
-    if (self.isPushEnabled) {
-        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    if (pushEnabled) {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
     }
     else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        [currentInstallation removeObject:@"active" forKey:@"channels"];
+        [currentInstallation saveInBackground];
     }
     _pushEnabled = pushEnabled;
 }
