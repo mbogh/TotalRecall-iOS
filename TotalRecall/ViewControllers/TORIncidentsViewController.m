@@ -15,7 +15,7 @@
 
 #import "TORIncidentCell.h"
 
-@interface TORIncidentsViewController () <UIActionSheetDelegate>
+@interface TORIncidentsViewController ()
 @property (strong, nonatomic) TORIncidentsViewModel *viewModel;
 @property (strong, nonatomic) TORIncidentCell *incidentCell;
 @end
@@ -71,36 +71,17 @@
 #pragma mark - Actions
 
 - (IBAction)didTouchPushSettingButton:(UIBarButtonItem *)sender {
-    NSString *title, *action;
-    if (self.viewModel.isPushEnabled) {
-        title = LS(@"incidents.push.actionsheet.disable.title");
-        action = LS(@"incidents.push.actionsheet.disable");
-    }
-    else {
-        title = LS(@"incidents.push.actionsheet.enable.title");
-        action = LS(@"incidents.push.actionsheet.enable");
-    }
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
-                                                             delegate:self
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:self.viewModel.pushTitle
+                                                             delegate:nil
                                                     cancelButtonTitle:LS(@"incidents.push.actionsheet.cancel")
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:action, nil];
+                                                    otherButtonTitles:self.viewModel.pushAction, nil];
+    [[actionSheet rac_buttonClickedSignal] subscribeNext:^(NSNumber *buttonIndex) {
+        if (actionSheet.cancelButtonIndex != buttonIndex.integerValue) {
+            self.viewModel.pushEnabled = !self.viewModel.isPushEnabled;
+        }
+    }];
     [actionSheet showInView:self.view];
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (actionSheet.cancelButtonIndex != buttonIndex) {
-        if (self.viewModel.isPushEnabled) {
-            [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-        }
-        else {
-            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
-        }
-        self.viewModel.pushEnabled = !self.viewModel.isPushEnabled;
-    }
 }
 
 #pragma mark - UITableViewDataSource

@@ -68,4 +68,24 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+#pragma mark - Push
+
+- (void)setPushEnabled:(BOOL)pushEnabled {
+    if (self.isPushEnabled) {
+        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    }
+    else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+    }
+    _pushEnabled = pushEnabled;
+}
+
+- (NSString *)pushTitle {
+    return self.isPushEnabled ? LS(@"incidents.push.actionsheet.disable.title") : LS(@"incidents.push.actionsheet.enable.title");
+}
+
+- (NSString *)pushAction {
+    return self.isPushEnabled ? LS(@"incidents.push.actionsheet.disable") : LS(@"incidents.push.actionsheet.enable");
+}
+
 @end

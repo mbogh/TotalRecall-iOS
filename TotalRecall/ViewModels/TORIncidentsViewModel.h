@@ -12,5 +12,7 @@
 @property (strong, readonly, nonatomic) NSArray *incidents;
 @property (assign, readonly, nonatomic, getter = isLoading) BOOL loading;
 @property (assign, nonatomic, getter = isPushEnabled) BOOL pushEnabled;
+@property (copy, readonly, nonatomic) NSString *pushTitle;
+@property (copy, readonly, nonatomic) NSString *pushAction;
 - (void)downloadLatestIncidents;
 @end
