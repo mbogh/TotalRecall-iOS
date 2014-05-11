@@ -35,7 +35,7 @@
 
 - (void)testIfDownloadLatestIncidentsIsCalled {
     __block BOOL downloadLatestIncidentsCalled = NO;
-    [TORIncidentsViewModel aspect_hookSelector:@selector(downloadLatestIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id instance, NSArray *args) {
+    [TORIncidentsViewModel aspect_hookSelector:@selector(downloadLatestIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
         downloadLatestIncidentsCalled = YES;
     } error:NULL];
     TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
@@ -47,7 +47,7 @@
 
 - (void)testIfCachedIncidentsIsCalled {
     __block BOOL cachedIncidentsCalled = NO;
-    [TORIncidentsViewModel aspect_hookSelector:@selector(cachedIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id instance, NSArray *args) {
+    [TORIncidentsViewModel aspect_hookSelector:@selector(cachedIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
         cachedIncidentsCalled = YES;
     } error:NULL];
     __unused TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
@@ -75,21 +75,21 @@
 
 - (void)testThatRegisterForRemoteNotificationTypesIsCalledWhenEnablingPush {
     __block BOOL registerForRemoteNotificationTypesCalled = NO;
-    __block UIRemoteNotificationType notificationTypes = -1;
-    [UIApplication aspect_hookSelector:@selector(registerForRemoteNotificationTypes:) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id instance, NSArray *args) {
+    __block UIRemoteNotificationType notificationTypesCalled = -1;
+    [UIApplication aspect_hookSelector:@selector(registerForRemoteNotificationTypes:) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> aspectInfo, UIRemoteNotificationType notificationTypes) {
         registerForRemoteNotificationTypesCalled = YES;
-        notificationTypes = [args.firstObject integerValue];
+        notificationTypesCalled = notificationTypes;
     } error:nil];
     
     TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
     viewModel.pushEnabled = YES;
     XCTAssertTrue(registerForRemoteNotificationTypesCalled, @"registerForRemoteNotificationTypes: should be called when enabling push.");
-    XCTAssertTrue(notificationTypes == UIRemoteNotificationTypeAlert, @"registerForRemoteNotificationTypes: should be called with UIRemoteNotificationTypeAlert when enabling push.");
+    XCTAssertTrue(notificationTypesCalled == UIRemoteNotificationTypeAlert, @"registerForRemoteNotificationTypes: should be called with UIRemoteNotificationTypeAlert when enabling push.");
 }
 
 - (void)testThatUnregisterForRemoteNotificationsIsCalledWhenDisablingPush {
     __block BOOL unregisterForRemoteNotificationsCalled = NO;
-    [UIApplication aspect_hookSelector:@selector(unregisterForRemoteNotifications) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^(id instance, NSArray *args) {
+    [UIApplication aspect_hookSelector:@selector(unregisterForRemoteNotifications) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
         unregisterForRemoteNotificationsCalled = YES;
     } error:nil];
     

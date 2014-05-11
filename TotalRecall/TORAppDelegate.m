@@ -55,7 +55,8 @@
 }
 
 - (void)setupParseAnalytics {
-    [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(UIViewController *viewController, NSArray *arguments) {
+    [UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo, BOOL animated) {
+        UIViewController *viewController = aspectInfo.instance;
         if (viewController.title && viewController.title.length > 0) {
             [PFAnalytics trackEvent:TORAnalyticsEventViewWillAppear dimensions:@{@"Title": viewController.title}];
         }

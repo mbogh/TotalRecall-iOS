@@ -9,7 +9,7 @@
 // Aspects
 #define COCOAPODS_POD_AVAILABLE_Aspects
 #define COCOAPODS_VERSION_MAJOR_Aspects 1
-#define COCOAPODS_VERSION_MINOR_Aspects 3
+#define COCOAPODS_VERSION_MINOR_Aspects 4
 #define COCOAPODS_VERSION_PATCH_Aspects 1
 
 // Bolts
