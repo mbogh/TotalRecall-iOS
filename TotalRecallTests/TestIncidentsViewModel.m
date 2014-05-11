@@ -98,4 +98,18 @@
     XCTAssertTrue(unregisterForRemoteNotificationsCalled, @"unregisterForRemoteNotificationsCalled should be called when disabling push.");
 }
 
+- (void)testPushFlagInUserDefaults {
+    [NSUserDefaults resetStandardUserDefaults];
+    [NSUserDefaults standardUserDefaults];
+    
+    TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
+    XCTAssertFalse(viewModel.isPushEnabled, @"Push should be disabled as default.");
+    
+    viewModel.pushEnabled = YES;
+    XCTAssertTrue(viewModel.isPushEnabled, @"Push should be enabled after enabling it.");
+    
+    viewModel.pushEnabled = NO;
+    XCTAssertFalse(viewModel.isPushEnabled, @"Push should be disabled after disabling it.");
+}
+
 @end
