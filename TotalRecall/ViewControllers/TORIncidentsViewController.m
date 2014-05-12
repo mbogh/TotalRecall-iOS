@@ -28,9 +28,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
     
+    @weakify(self);
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [[self.refreshControl rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UIRefreshControl *refreshControl) {
         if (refreshControl.isRefreshing) {
+            @strongify(self);
             [self.viewModel downloadLatestIncidents];
         }
     }];
@@ -38,13 +41,13 @@
     self.incidentCell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([TORIncidentCell class]) owner:nil options:nil] firstObject];
     
     self.viewModel = [TORIncidentsViewModel new];
-    @weakify(self);
     [RACObserve(self.viewModel, incidents) subscribeNext:^(id x) {
         @strongify(self);
         [self.tableView reloadData];
     }];
     
     [RACObserve(self.viewModel, loading) subscribeNext:^(NSNumber *isLoading) {
+        @strongify(self);
         if (isLoading.boolValue) {
             [self.refreshControl beginRefreshing];
             if (self.tableView.contentOffset.y == -64.f) {
@@ -75,7 +78,9 @@
                                                     cancelButtonTitle:LS(@"incidents.push.actionsheet.cancel")
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:self.viewModel.pushAction, nil];
+    @weakify(self);
     [[actionSheet rac_buttonClickedSignal] subscribeNext:^(NSNumber *buttonIndex) {
+        @strongify(self);
         if (actionSheet.cancelButtonIndex != buttonIndex.integerValue) {
             self.viewModel.pushEnabled = !self.viewModel.isPushEnabled;
         }
