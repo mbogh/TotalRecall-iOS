@@ -58,6 +58,23 @@
             [self.refreshControl endRefreshing];
         }
     }];
+    
+    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:self.viewModel.pushTitle
+                                                                 delegate:nil
+                                                        cancelButtonTitle:LS(@"incidents.push.actionsheet.cancel")
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:self.viewModel.pushAction, nil];
+        
+        [[actionSheet rac_buttonClickedSignal] subscribeNext:^(NSNumber *buttonIndex) {
+            if (actionSheet.cancelButtonIndex != buttonIndex.integerValue) {
+                self.viewModel.pushEnabled = !self.viewModel.isPushEnabled;
+            }
+        }];
+        [actionSheet showInView:self.view];
+        return [RACSignal empty];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -68,24 +85,6 @@
     else if ([[[NSUserDefaults standardUserDefaults] objectForKey:TORDefaultsLastSyncDate] timeIntervalSinceNow] > 1.f*60.f*60.f) {
         [self.viewModel downloadLatestIncidents];
     }
-}
-
-#pragma mark - Actions
-
-- (IBAction)didTouchPushSettingButton:(UIBarButtonItem *)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:self.viewModel.pushTitle
-                                                             delegate:nil
-                                                    cancelButtonTitle:LS(@"incidents.push.actionsheet.cancel")
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:self.viewModel.pushAction, nil];
-    @weakify(self);
-    [[actionSheet rac_buttonClickedSignal] subscribeNext:^(NSNumber *buttonIndex) {
-        @strongify(self);
-        if (actionSheet.cancelButtonIndex != buttonIndex.integerValue) {
-            self.viewModel.pushEnabled = !self.viewModel.isPushEnabled;
-        }
-    }];
-    [actionSheet showInView:self.view];
 }
 
 #pragma mark - UITableViewDataSource

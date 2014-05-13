@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2hU-sk-Ozl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2hU-sk-Ozl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -23,11 +23,7 @@
                                 <segue destination="PJp-e6-i5e" kind="modal" id="udn-eD-evl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="756-bell" id="qQb-au-l4W">
-                            <connections>
-                                <action selector="didTouchPushSettingButton:" destination="3TJ-NA-UxF" id="6t8-0G-RsL"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="756-bell" id="qQb-au-l4W"/>
                     </navigationItem>
                     <connections>
                         <segue destination="ZaR-fa-29P" kind="push" identifier="TORIncidentViewControllerSegue" id="K5N-X4-rFi"/>
@@ -187,8 +183,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="724-info" width="28" height="28"/>
-        <image name="756-bell" width="24" height="28"/>
+        <image name="724-info" width="20" height="20"/>
+        <image name="756-bell" width="17" height="20"/>
         <image name="me" width="160" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
