@@ -19,6 +19,7 @@ PODS:
     - ReactiveCocoa/Core
   - ReactiveViewModel (0.2):
     - ReactiveCocoa (~> 2.1)
+  - TUSafariActivity (1.0.0)
   - UIColor-HexString (1.1.0)
 
 DEPENDENCIES:
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - Parse+NSCoding
   - ReactiveCocoa
   - ReactiveViewModel
+  - TUSafariActivity
   - UIColor-HexString (= 1.1.0)
 
 SPEC CHECKSUMS:
@@ -40,6 +42,7 @@ SPEC CHECKSUMS:
   Parse-iOS-SDK: 48e366fb9a8956c4e50d93cfd16243176938fae1
   ReactiveCocoa: dde7b11a14954edf789e7343b2c32e595caabd01
   ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
+  TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba
   UIColor-HexString: 69eb4fc7f3f72d9e8f58566b59b565fa7cbb7130
 
 COCOAPODS: 0.32.1

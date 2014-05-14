@@ -15,6 +15,8 @@
 
 #import "TORIncidentCell.h"
 
+#import <TUSafariActivity/TUSafariActivity.h>
+
 @interface TORIncidentsViewController ()
 @property (strong, nonatomic) TORIncidentsViewModel *viewModel;
 @property (strong, nonatomic) TORIncidentCell *incidentCell;
@@ -109,7 +111,8 @@
     @weakify(self);
     [RACObserve(incidentViewModel, incidentURL) subscribeNext:^(id x) {
         @strongify(self);
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, x] applicationActivities:nil];
+        TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, x] applicationActivities:@[activity]];
         [self presentViewController:activityViewController animated:YES completion:nil];
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
