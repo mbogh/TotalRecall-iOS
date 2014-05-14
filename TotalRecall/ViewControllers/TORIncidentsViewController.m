@@ -106,8 +106,11 @@
     TORIncident *incident = self.viewModel.incidents[indexPath.row];
     TORIncidentViewModel *incidentViewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
     
+    @weakify(self);
     [RACObserve(incidentViewModel, incidentURL) subscribeNext:^(id x) {
-        [[UIApplication sharedApplication] openURL:x];
+        @strongify(self);
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, x] applicationActivities:nil];
+        [self presentViewController:activityViewController animated:YES completion:nil];
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    [self performSegueWithIdentifier:@"TORIncidentViewControllerSegue" sender:incident];
