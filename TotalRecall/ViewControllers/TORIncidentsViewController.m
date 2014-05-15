@@ -113,6 +113,7 @@
         @strongify(self);
         TUSafariActivity *activity = [[TUSafariActivity alloc] init];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, x] applicationActivities:@[activity]];
+        activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
         [self presentViewController:activityViewController animated:YES completion:nil];
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
