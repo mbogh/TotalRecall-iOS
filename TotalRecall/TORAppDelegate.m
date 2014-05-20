@@ -66,9 +66,7 @@
 #pragma mark - Appearance
 
 - (void)applyAppearance {
-    [UINavigationBar appearance].barTintColor = [UIColor colorWithHexString:@"0BD318"];
-    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
+    [UINavigationBar appearance].tintColor = [UIColor colorWithHexString:@"ff5b37"];
 }
 
 @end
