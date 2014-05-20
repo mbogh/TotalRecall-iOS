@@ -33,16 +33,16 @@ DEPENDENCIES:
   - UIColor-HexString (= 1.1.0)
 
 SPEC CHECKSUMS:
-  Aspects: fc1e3a3ed849fd7d5634e3de6ed01cb8e08bc4c5
-  Bolts: dc620a31cf67c29bce3e3d14a07a12e797a1a154
-  Facebook-iOS-SDK: 97e68fb37468bee2d90201fd0c9e4dccce5683d9
-  OCMock: 5008fae4b4789b8fc3e48cd7660f2eb5ef8ce89e
-  Parse: 3739f0b211c49115bad96d6b0969b804d4da2f24
-  Parse+NSCoding: 26e5e1e9b05204c3bb130cb4a386a98414c6f2c4
-  Parse-iOS-SDK: 48e366fb9a8956c4e50d93cfd16243176938fae1
-  ReactiveCocoa: dde7b11a14954edf789e7343b2c32e595caabd01
-  ReactiveViewModel: f636ab3e06b5e69664b69c883fcdb457ab5cb0cb
-  TUSafariActivity: bd9da588f5f9136ba445d89f8f86b6dccf4d46ba
-  UIColor-HexString: 69eb4fc7f3f72d9e8f58566b59b565fa7cbb7130
+  Aspects: a6368eba05295b24ffe0e9acfb9080cc3b0f4b5f
+  Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
+  Facebook-iOS-SDK: e9b3d5ac54ee3e5e693f4eef470b97911b3d076d
+  OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
+  Parse: ffebaecaddd32cb52671010f81567c298ff93d04
+  Parse+NSCoding: 2d7fd08777c8df10aaa667c02382878c98128a88
+  Parse-iOS-SDK: 5e1f7e649a02f1cc19e73cc95bd43d7778848314
+  ReactiveCocoa: 2066583826c17dde8e90c41e489f682048cc57c9
+  ReactiveViewModel: 78387196df2e7535bb2776c41df15dbb17300f8a
+  TUSafariActivity: afff9b1d2eacf7cbace752c5f2bf56db852714de
+  UIColor-HexString: a9eabf02c1a2f9036ed6ac9cb2a3ea086f3b39e4
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
