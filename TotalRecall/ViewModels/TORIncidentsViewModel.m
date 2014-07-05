@@ -30,6 +30,7 @@
         }];
         self.query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
         self.query.limit = 20;
+        [self.query orderByDescending:@"publishedAt"];
         
         @weakify(self);
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
@@ -48,7 +49,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:TORDefaultsLastSyncDate];
         [[NSUserDefaults standardUserDefaults] synchronize];
         if (!error) {
-            self.incidents = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"publishedAt" ascending:NO]]];
+            self.incidents = objects;
             [self cacheIncidents:self.incidents];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
