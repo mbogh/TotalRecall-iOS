@@ -3,7 +3,7 @@ PODS:
   - Bolts (1.1.0)
   - Facebook-iOS-SDK (3.15.1):
     - Bolts
-  - OCMock (3.0)
+  - OCMock (3.0.2)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
   - Parse+NSCoding (0.1.4):
@@ -36,7 +36,7 @@ SPEC CHECKSUMS:
   Aspects: a6368eba05295b24ffe0e9acfb9080cc3b0f4b5f
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
   Facebook-iOS-SDK: 56214af8e0ef16e751eb2804250326b709e571b8
-  OCMock: 6e6041173cf801f458ef66ec1a8fa3d974947335
+  OCMock: b9836ab89d8d5e66cbe6333f93857037c310ee62
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
   Parse+NSCoding: 2d7fd08777c8df10aaa667c02382878c98128a88
   Parse-iOS-SDK: 5e1f7e649a02f1cc19e73cc95bd43d7778848314
