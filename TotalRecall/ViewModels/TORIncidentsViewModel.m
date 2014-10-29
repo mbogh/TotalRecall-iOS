@@ -72,11 +72,14 @@
 #pragma mark - Push
 
 - (void)setPushEnabled:(BOOL)pushEnabled {
+    UIApplication *application = [UIApplication sharedApplication];
     if (pushEnabled) {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert];
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
     }
     else {
-        [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+        [application unregisterForRemoteNotifications];
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
         [currentInstallation removeObject:@"active" forKey:@"channels"];
         [currentInstallation saveInBackground];
