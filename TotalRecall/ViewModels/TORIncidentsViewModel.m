@@ -9,6 +9,7 @@
 #import "TORIncidentsViewModel.h"
 
 #import "TORIncident.h"
+#import "TORAppDelegate.h"
 
 @interface TORIncidentsViewModel ()
 @property (strong, nonatomic) NSArray *incidents;
@@ -74,9 +75,7 @@
 - (void)setPushEnabled:(BOOL)pushEnabled {
     UIApplication *application = [UIApplication sharedApplication];
     if (pushEnabled) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
+        [(TORAppDelegate *)application.delegate enableNotificationsForApplication:application];
     }
     else {
         [application unregisterForRemoteNotifications];

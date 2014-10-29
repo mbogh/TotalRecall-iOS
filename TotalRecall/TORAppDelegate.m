@@ -14,6 +14,9 @@
 
 #import "TORIncident.h"
 
+NSString *const TORNotificationCategoryShow = @"TORNotificationCategoryShow";
+NSString *const TORNotificationCategoryShowAction= @"TORNotificationCategoryShowAction";
+
 @implementation TORAppDelegate
 
 #pragma mark - UIApplicationDelegate
@@ -26,9 +29,7 @@
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{TORDefaultsPushMessage: @(NO), TORDefaultsLastSyncDate: [NSDate dateWithTimeIntervalSince1970:0]}];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage]) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
+        [self enableNotificationsForApplication:application];
     }
 
     return YES;
@@ -69,6 +70,32 @@
 
 - (void)applyAppearance {
     [UINavigationBar appearance].tintColor = [UIColor colorWithHexString:@"ff5b37"];
+}
+
+#pragma mark - Notifications
+
+- (void)enableNotificationsForApplication:(UIApplication *)application
+{
+    UIMutableUserNotificationAction *showAction = [[UIMutableUserNotificationAction alloc] init];
+    showAction.identifier = TORNotificationCategoryShowAction;
+    showAction.title = LS(@"notification.action.show");
+    showAction.activationMode = UIUserNotificationActivationModeForeground;
+    showAction.destructive = YES;
+    showAction.authenticationRequired = YES;
+
+    UIMutableUserNotificationCategory *showActionsCategory = [[UIMutableUserNotificationCategory alloc] init];
+    showActionsCategory.identifier = TORNotificationCategoryShow;
+    [showActionsCategory setActions:@[showAction] forContext:UIUserNotificationActionContextDefault];
+    [showActionsCategory setActions:@[showAction] forContext:UIUserNotificationActionContextMinimal];
+
+    UIUserNotificationSettings *currentNotifSettings = application.currentUserNotificationSettings;
+    UIUserNotificationType notificationTypes = currentNotifSettings.types;
+    if (notificationTypes == UIUserNotificationTypeNone) {
+        notificationTypes = UIUserNotificationTypeAlert;
+    }
+
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:[NSSet setWithObject:showActionsCategory]];
+    [application registerUserNotificationSettings:notificationSettings];
 }
 
 @end

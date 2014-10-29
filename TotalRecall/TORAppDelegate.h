@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+#pragma mark - Notifications
+- (void)enableNotificationsForApplication:(UIApplication *)application;
+
 @end
