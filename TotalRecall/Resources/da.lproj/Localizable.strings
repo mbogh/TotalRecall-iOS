@@ -13,10 +13,4 @@
 "incidents.push.actionsheet.enable" = "Slå push-beskeder til";
 "incidents.push.actionsheet.disable" = "Slå push-beskeder fra";
 
-"about.title" = "Om";
-"about.twitter" = "Følg mig på Twitter @mbogh";
-"about.description" = "Tilbagekaldt henter de seneste sager om tilbagekaldte fødevarer fra Fødevarestyrelsen og giver dig som bruger mulighed for at få en push-besked når der kommer nye sager.\n\nTilbagekaldt er ikke lavet i samarbejde med Fødevarestyrelsen men lavet fordi jeg er utilfreds med den RSS-feed løsning Fødevarestyrelsen tilbyder på deres hjemmeside.";
-"about.version.title" = "Versionsoversigt";
-"about.version.description" = "Version 1.0:\n- Visning af de seneste 20 sager på liste form.\n- Sags detaljer vises på Fødevarestyrelsens hjemmeside.\n- Mulighed for modtagelse af en push-besked når der tilføjes nye sager.";
-
 "notification.action.show" = "Vis";

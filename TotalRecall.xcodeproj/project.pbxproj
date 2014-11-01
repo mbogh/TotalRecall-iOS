@@ -30,7 +30,6 @@
 		5A9E09DE1901ADA1009B450A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A9E09E01901ADA1009B450A /* Localizable.strings */; };
 		5A9E09E71903F621009B450A /* TORIncidentsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E09E61903F621009B450A /* TORIncidentsViewModel.m */; };
 		5A9E09EA190400E1009B450A /* TORIncidentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E09E9190400E1009B450A /* TORIncidentViewModel.m */; };
-		5A9E09ED190407E9009B450A /* TORAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E09EC190407E9009B450A /* TORAboutViewController.m */; };
 		E57D8144E1DA41BD856B6694 /* libPods-TotalRecallTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DBB760FAC84F52BC7BB90B /* libPods-TotalRecallTests.a */; };
 		F1C213EF30024074A7B7AB01 /* libPods-TotalRecall.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A86F021E4B4F3591CC85B1 /* libPods-TotalRecall.a */; };
 /* End PBXBuildFile section */
@@ -80,8 +79,6 @@
 		5A9E09E61903F621009B450A /* TORIncidentsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORIncidentsViewModel.m; sourceTree = "<group>"; };
 		5A9E09E8190400E1009B450A /* TORIncidentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORIncidentViewModel.h; sourceTree = "<group>"; };
 		5A9E09E9190400E1009B450A /* TORIncidentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORIncidentViewModel.m; sourceTree = "<group>"; };
-		5A9E09EB190407E9009B450A /* TORAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TORAboutViewController.h; sourceTree = "<group>"; };
-		5A9E09EC190407E9009B450A /* TORAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TORAboutViewController.m; sourceTree = "<group>"; };
 		5A9E09EE19040BA1009B450A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5AFD5BB8190BA1CC0058B4DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		973746643553015855CD443A /* Pods-TotalRecallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TotalRecallTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TotalRecallTests/Pods-TotalRecallTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,8 +221,6 @@
 				5A844C7C19010C6500F9F4B9 /* TORIncidentsViewController.m */,
 				5A9E09D719019F87009B450A /* TORIncidentViewController.h */,
 				5A9E09D819019F87009B450A /* TORIncidentViewController.m */,
-				5A9E09EB190407E9009B450A /* TORAboutViewController.h */,
-				5A9E09EC190407E9009B450A /* TORAboutViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -457,7 +452,6 @@
 				5A9E09EA190400E1009B450A /* TORIncidentViewModel.m in Sources */,
 				5A844C5319010AEC00F9F4B9 /* TORAppDelegate.m in Sources */,
 				5A9E09D419012CC6009B450A /* TORIncidentCell.m in Sources */,
-				5A9E09ED190407E9009B450A /* TORAboutViewController.m in Sources */,
 				5A9E09D919019F87009B450A /* TORIncidentViewController.m in Sources */,
 				5A9E09E71903F621009B450A /* TORIncidentsViewModel.m in Sources */,
 				5A844C851901176300F9F4B9 /* TORIncident.m in Sources */,
