@@ -82,6 +82,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="756-bell" width="17" height="20"/>
+        <image name="756-bell" width="24" height="28"/>
     </resources>
 </document>
