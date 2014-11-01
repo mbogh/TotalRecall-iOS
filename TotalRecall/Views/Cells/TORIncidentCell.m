@@ -27,7 +27,20 @@
 
 - (void)configureWithIncident:(TORIncident *)incident {
     self.titleLabel.text = incident.title;
-    self.dateLabel.text = [NSDateFormatter localizedStringFromDate:incident.publishedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
+    self.dateLabel.text = [self dateStringFromDate:incident.publishedAt];
+}
+
+- (NSString *)dateStringFromDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"da_DK"];
+    });
+    return [dateFormatter stringFromDate:date];
 }
 
 @end
