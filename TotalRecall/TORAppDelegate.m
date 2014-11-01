@@ -46,6 +46,14 @@ NSString *const TORNotificationCategoryShowAction= @"TORNotificationCategoryShow
     [PFPush handlePush:userInfo];
 }
 
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
+{
+    if ([identifier isEqualToString:TORNotificationCategoryShowAction]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://usn.dk"]];
+    }
+    completionHandler();
+}
+
 #pragma mark - Parse
 
 - (void)setupParseWithOptions:(NSDictionary *)launchOptions {
@@ -94,8 +102,9 @@ NSString *const TORNotificationCategoryShowAction= @"TORNotificationCategoryShow
         notificationTypes = UIUserNotificationTypeAlert;
     }
 
-    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:[NSSet setWithObject:showActionsCategory]];
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
     [application registerUserNotificationSettings:notificationSettings];
+    [application registerForRemoteNotifications];
 }
 
 @end
