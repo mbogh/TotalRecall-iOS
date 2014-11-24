@@ -26,7 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.title = LS(@"incidents.title");
+
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
     
@@ -76,6 +78,11 @@
         }];
         [actionSheet showInView:self.view];
         return [RACSignal empty];
+    }];
+
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIContentSizeCategoryDidChangeNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self);
+        [self.tableView reloadData];
     }];
 }
 

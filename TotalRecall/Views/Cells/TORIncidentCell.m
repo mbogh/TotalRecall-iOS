@@ -33,6 +33,7 @@
 {
     [super layoutSubviews];
     self.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentView.bounds) - 2.0 * 15.0;
+    [self updateFonts];
 }
 
 #pragma mark - Configuration
@@ -54,6 +55,12 @@
         dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"da_DK"];
     });
     return [dateFormatter stringFromDate:date];
+}
+
+- (void)updateFonts
+{
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.dateLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 }
 
 @end
