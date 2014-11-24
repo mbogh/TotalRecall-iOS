@@ -602,7 +602,7 @@
 				INFOPLIST_FILE = "TotalRecall/TotalRecall-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8e06217d-c78f-45a2-af9e-b26ea8b8afdd";
+				PROVISIONING_PROFILE = "9CD3955B-DFA2-426D-8CF3-BEB3287E82AC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -613,7 +613,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Morten Soerensen (6Y3N739X56)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
