@@ -18,14 +18,27 @@
 
 @implementation TORIncidentCell
 
-- (void)awakeFromNib {
+#pragma mark - Nib
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
     self.titleLabel.textColor = TORBlackTextColor;
     self.dateLabel.textColor = TORGreyTextColor;
 }
 
+#pragma mark - Layout
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentView.bounds) - 2.0 * 15.0;
+}
+
 #pragma mark - Configuration
 
-- (void)configureWithIncident:(TORIncident *)incident {
+- (void)configureWithIncident:(TORIncident *)incident
+{
     self.titleLabel.text = incident.title;
     self.dateLabel.text = [self dateStringFromDate:incident.publishedAt];
 }
