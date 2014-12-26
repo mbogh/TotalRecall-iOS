@@ -3,7 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "TotalRecall" do
     pod 'Parse'
-    pod 'Parse+NSCoding'
     pod 'UIColor-HexString'
     pod 'Aspects'
     pod 'ReactiveCocoa'

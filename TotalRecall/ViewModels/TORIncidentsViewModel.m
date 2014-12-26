@@ -14,7 +14,7 @@
 @interface TORIncidentsViewModel ()
 @property (strong, nonatomic) NSArray *incidents;
 @property (assign, nonatomic, getter = isLoading) BOOL loading;
-@property (strong, nonatomic) PFQuery *query;
+@property (readonly, copy, nonatomic) PFQuery *query;
 @end
 
 @implementation TORIncidentsViewModel
@@ -22,18 +22,22 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.incidents = [self cachedIncidents];
+        PFQuery *query = [self.query fromLocalDatastore];
+        @weakify(self);
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            @strongify(self);
+            if (!error) {
+                self.incidents = objects;
+            }
+        }];
+
         self.loading = NO;
         _pushEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
         [RACObserve(self, pushEnabled) subscribeNext:^(NSNumber *flag) {
             [[NSUserDefaults standardUserDefaults] setBool:flag.boolValue forKey:TORDefaultsPushMessage];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
-        self.query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
-        self.query.limit = 20;
-        [self.query orderByDescending:@"publishedAt"];
-        
-        @weakify(self);
+
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
             [self downloadLatestIncidents];
@@ -42,32 +46,32 @@
     return self;
 }
 
-#pragma mark - Download
+#pragma mark - Query
+
+- (PFQuery *)query
+{
+    PFQuery *query = [PFQuery queryWithClassName:[TORIncident parseClassName]];
+    query.limit = 20;
+    [query orderByDescending:@"publishedAt"];
+    return query;
+}
 
 - (void)downloadLatestIncidents {
     self.loading = YES;
-    [self.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *query = self.query;
+    @weakify(self);
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        @strongify(self);
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:TORDefaultsLastSyncDate];
         [[NSUserDefaults standardUserDefaults] synchronize];
         if (!error) {
+            [TORIncident pinAllInBackground:objects];
             self.incidents = objects;
-            [self cacheIncidents:self.incidents];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
         self.loading = NO;
     }];
-}
-
-#pragma mark - Incidents cache
-
-- (NSArray *)cachedIncidents {
-    return [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:TORDefaultsIncidentsCache]];
-}
-
-- (void)cacheIncidents:(NSArray *)incidents {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:incidents] forKey:TORDefaultsIncidentsCache];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Push

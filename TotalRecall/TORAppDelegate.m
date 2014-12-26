@@ -58,6 +58,7 @@ NSString *const TORNotificationCategoryShowAction= @"TORNotificationCategoryShow
 
 - (void)setupParseWithOptions:(NSDictionary *)launchOptions {
     [TORIncident registerSubclass];
+    [Parse enableLocalDatastore];
     [Parse setApplicationId:@"BfjCrISj7ZfOvYs9XAH7wBZNNPzVNwr3v2t0PuXp" clientKey:@"Z4LKOwj9dtDWNVDqRlObpbqMBGCYvxPY3tMitGeR"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [PFUser enableAutomaticUser];

@@ -1,1 +1,0 @@
-../../../Parse+NSCoding/NSObject+Properties.h
