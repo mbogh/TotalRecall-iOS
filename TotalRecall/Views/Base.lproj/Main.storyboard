@@ -55,7 +55,7 @@
                                     <outlet property="dateLabel" destination="RTW-3L-ooN" id="FsA-Tq-HS0"/>
                                     <outlet property="summarylabel" destination="YBr-D5-FBJ" id="iat-mA-eW7"/>
                                     <outlet property="titleLabel" destination="qJP-0G-qhW" id="CdI-Mn-Fxi"/>
-                                    <segue destination="ZaR-fa-29P" kind="show" id="y35-Ib-B5r"/>
+                                    <segue destination="ZaR-fa-29P" kind="show" identifier="TORIncidentViewControllerSegue" id="y35-Ib-B5r"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,9 +67,6 @@
                     <navigationItem key="navigationItem" title="Incidents" id="5vT-5d-AfY">
                         <barButtonItem key="rightBarButtonItem" image="756-bell" id="qQb-au-l4W"/>
                     </navigationItem>
-                    <connections>
-                        <segue destination="ZaR-fa-29P" kind="show" identifier="TORIncidentViewControllerSegue" id="K5N-X4-rFi"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oS-kL-tlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -87,25 +84,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZq-Z7-p29">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="ZaR-fa-29P" id="mFy-zr-Tha"/>
-                                </connections>
-                            </webView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaG-3T-0xu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="GZq-Z7-p29" secondAttribute="trailing" id="Fh9-bp-aWq"/>
-                            <constraint firstItem="icV-TV-dhz" firstAttribute="top" secondItem="GZq-Z7-p29" secondAttribute="bottom" id="S9V-Px-FK1"/>
-                            <constraint firstItem="GZq-Z7-p29" firstAttribute="leading" secondItem="HlT-Xz-QuF" secondAttribute="leading" id="TEe-MV-Gdl"/>
-                            <constraint firstItem="GZq-Z7-p29" firstAttribute="top" secondItem="37t-aL-UH0" secondAttribute="bottom" id="vXf-vt-nYz"/>
+                            <constraint firstItem="zaG-3T-0xu" firstAttribute="leading" secondItem="HlT-Xz-QuF" secondAttribute="leading" id="0Zc-t9-yih"/>
+                            <constraint firstItem="zaG-3T-0xu" firstAttribute="top" secondItem="HlT-Xz-QuF" secondAttribute="top" id="Dat-7p-IOs"/>
+                            <constraint firstAttribute="bottom" secondItem="zaG-3T-0xu" secondAttribute="bottom" id="EGV-YC-1gO"/>
+                            <constraint firstItem="zaG-3T-0xu" firstAttribute="top" secondItem="37t-aL-UH0" secondAttribute="bottom" id="fTf-40-JbK"/>
+                            <constraint firstAttribute="trailing" secondItem="zaG-3T-0xu" secondAttribute="trailing" id="stW-C1-d5G"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fTf-40-JbK"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Incident" id="G1N-Zc-Lye"/>
                     <connections>
-                        <outlet property="webView" destination="GZq-Z7-p29" id="Thb-61-OC9"/>
+                        <outlet property="textView" destination="zaG-3T-0xu" id="0Tz-Jy-w3e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEN-Ud-Y89" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -28,6 +28,8 @@
 
     self.title = LS(@"incidents.title");
 
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
     self.tableView.tableFooterView = [UIView new];
     self.tableView.estimatedRowHeight = 100.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -109,27 +111,15 @@
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TORIncident *incident = self.viewModel.incidents[indexPath.row];
-    TORIncidentViewModel *incidentViewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
-    
-    @weakify(self);
-    [RACObserve(incidentViewModel, incidentURL) subscribeNext:^(id x) {
-        @strongify(self);
-        TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, x] applicationActivities:@[activity]];
-        activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
-        [self presentViewController:activityViewController animated:YES completion:nil];
-    }];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [self performSegueWithIdentifier:@"TORIncidentViewControllerSegue" sender:incident];
-}
 
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"TORIncidentViewControllerSegue"]) {
-        ((TORIncidentViewController *)segue.destinationViewController).viewModel = [[TORIncidentViewModel alloc] initWithIncident:sender];
+        TORIncidentCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        TORIncident *incident = self.viewModel.incidents[indexPath.row];
+        ((TORIncidentViewController *)segue.destinationViewController).viewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
     }
 }
 

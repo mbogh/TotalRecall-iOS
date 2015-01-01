@@ -9,10 +9,12 @@
 #import "TORIncidentViewModel.h"
 #import "TORIncident.h"
 
+#import "UIColor+Hex.h"
+
 @interface TORIncidentViewModel ()
 @property (strong, nonatomic) TORIncident *incident;
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSURL *incidentURL;
+@property (strong, nonatomic) NSAttributedString *content;
 @end
 
 @implementation TORIncidentViewModel
@@ -23,8 +25,13 @@
         self.incident = incident;
         
         RAC(self, title) = RACObserve(self.incident, title);
-        RAC(self, incidentURL) = [RACObserve(self.incident, url) map:^(NSString *url) {
-            return [NSURL URLWithString:[url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+        RAC(self, content) = [RACObserve(self.incident, content) map:^(NSString *content) {
+            UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            NSString *stringHtml = [NSString stringWithFormat:@"<div style=\"font-family: %@; font-size: %f; color: #%@; text-align: left;\">%@</div>", font.fontName, font.pointSize, TORBlackTextColor.hexString, content];
+            return [[NSAttributedString alloc] initWithData:[stringHtml dataUsingEncoding:NSUTF8StringEncoding]
+                                                    options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                              NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+                                         documentAttributes:nil error:nil];
         }];
     }
     return self;

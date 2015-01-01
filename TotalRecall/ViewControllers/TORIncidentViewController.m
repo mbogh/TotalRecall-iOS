@@ -10,8 +10,8 @@
 
 #import "TORIncidentViewModel.h"
 
-@interface TORIncidentViewController () <UIWebViewDelegate>
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@interface TORIncidentViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -23,12 +23,10 @@
     RAC(self, title) = RACObserve(self.viewModel, title);
     
     @weakify(self);
-    [RACObserve(self.viewModel, incidentURL) subscribeNext:^(id x) {
+    [RACObserve(self.viewModel, content) subscribeNext:^(NSAttributedString *content) {
         @strongify(self);
-        [self.webView loadRequest:[NSURLRequest requestWithURL:x]];
+        self.textView.attributedText = content;
     }];
 }
-
-#pragma mark - UIWebViewDelegate
 
 @end

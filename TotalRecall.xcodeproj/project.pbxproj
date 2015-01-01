@@ -10,6 +10,7 @@
 		5A0986D4190FDD86006E8CB4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0986D3190FDD86006E8CB4 /* Crashlytics.framework */; };
 		5A0BA32A1919612F0048E790 /* TestIncidentsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BA3291919612F0048E790 /* TestIncidentsViewModel.m */; };
 		5A0BA33F191A62610048E790 /* TestIncidentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0BA33E191A62610048E790 /* TestIncidentViewModel.m */; };
+		5A6FA7F01A557D220014B80E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6FA7EF1A557D220014B80E /* UIColor+Hex.m */; };
 		5A844C4319010AEC00F9F4B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A844C4219010AEC00F9F4B9 /* Foundation.framework */; };
 		5A844C4519010AEC00F9F4B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A844C4419010AEC00F9F4B9 /* CoreGraphics.framework */; };
 		5A844C4719010AEC00F9F4B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A844C4619010AEC00F9F4B9 /* UIKit.framework */; };
@@ -48,6 +49,8 @@
 		5A0986D3190FDD86006E8CB4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5A0BA3291919612F0048E790 /* TestIncidentsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestIncidentsViewModel.m; sourceTree = "<group>"; };
 		5A0BA33E191A62610048E790 /* TestIncidentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestIncidentViewModel.m; sourceTree = "<group>"; };
+		5A6FA7EE1A557D220014B80E /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		5A6FA7EF1A557D220014B80E /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		5A844C3F19010AEC00F9F4B9 /* TotalRecall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TotalRecall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A844C4219010AEC00F9F4B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A844C4419010AEC00F9F4B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5A6FA7ED1A557CEE0014B80E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5A6FA7EE1A557D220014B80E /* UIColor+Hex.h */,
+				5A6FA7EF1A557D220014B80E /* UIColor+Hex.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		5A844C3619010AEC00F9F4B9 = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +173,7 @@
 		5A844C4819010AEC00F9F4B9 /* TotalRecall */ = {
 			isa = PBXGroup;
 			children = (
+				5A6FA7ED1A557CEE0014B80E /* Categories */,
 				5A844C821901174C00F9F4B9 /* Models */,
 				5A844C7F19010C8A00F9F4B9 /* Resources */,
 				5A844C4919010AEC00F9F4B9 /* Supporting Files */,
@@ -448,6 +461,7 @@
 				5A844C5319010AEC00F9F4B9 /* TORAppDelegate.m in Sources */,
 				5A9E09D419012CC6009B450A /* TORIncidentCell.m in Sources */,
 				5A9E09D919019F87009B450A /* TORIncidentViewController.m in Sources */,
+				5A6FA7F01A557D220014B80E /* UIColor+Hex.m in Sources */,
 				5A9E09E71903F621009B450A /* TORIncidentsViewModel.m in Sources */,
 				5A844C851901176300F9F4B9 /* TORIncident.m in Sources */,
 				5A844C7E19010C6500F9F4B9 /* TORIncidentsViewController.m in Sources */,
