@@ -13,6 +13,7 @@
 @interface TORIncidentCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *summarylabel;
 
 @end
 
@@ -32,7 +33,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentView.bounds) - 2.0 * 15.0;
+    self.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentView.bounds) - 15.0;
+    self.summarylabel.preferredMaxLayoutWidth = CGRectGetWidth(self.contentView.bounds) - 15.0;
     [self updateFonts];
 }
 
@@ -41,6 +43,7 @@
 - (void)configureWithIncident:(TORIncident *)incident
 {
     self.titleLabel.text = incident.title;
+    self.summarylabel.text = [incident.summary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.dateLabel.text = [self dateStringFromDate:incident.publishedAt];
 }
 
@@ -59,7 +62,8 @@
 
 - (void)updateFonts
 {
-    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.summarylabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     self.dateLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 }
 

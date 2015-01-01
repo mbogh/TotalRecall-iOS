@@ -28,7 +28,6 @@
 
     self.title = LS(@"incidents.title");
 
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(TORIncidentCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(TORIncidentCell.class)];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.estimatedRowHeight = 100.f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
