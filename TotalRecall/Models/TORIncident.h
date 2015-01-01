@@ -12,5 +12,8 @@
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) NSDate *publishedAt;
+@property (nonatomic, readonly) NSDate *modifiedAt;
+@property (nonatomic, readonly) NSString *content;
+@property (nonatomic, readonly) NSString *summary;
 + (NSString *)parseClassName;
 @end
