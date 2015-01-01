@@ -10,8 +10,10 @@
 
 #import "TORIncidentViewModel.h"
 
+@import WebKit;
+
 @interface TORIncidentViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) WKWebView *webView;
 
 @end
 
@@ -21,12 +23,29 @@
     [super viewDidLoad];
     
     RAC(self, title) = RACObserve(self.viewModel, title);
-    
+
+    self.webView = [[WKWebView alloc] init];
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.webView];
+    NSDictionary * views = NSDictionaryOfVariableBindings(_webView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_webView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_webView]|" options:0 metrics:nil views:views]];
     @weakify(self);
-    [RACObserve(self.viewModel, content) subscribeNext:^(NSAttributedString *content) {
+    [RACObserve(self.viewModel, content) subscribeNext:^(NSString *content) {
         @strongify(self);
-        self.textView.attributedText = content;
+        [self.webView loadHTMLString:content baseURL:nil];
     }];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 @end
