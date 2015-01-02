@@ -25,7 +25,11 @@
         self.incident = incident;
         
         RAC(self, title) = RACObserve(self.incident, title);
-        RAC(self, content) = RACObserve(self.incident, content);
+        RAC(self, content) = [RACObserve(self.incident, content) map:^id(NSString *content) {
+            NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"incident" ofType:@"html"];
+            NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+            return [NSString stringWithFormat:html, content];
+        }];
     }
     return self;
 }
