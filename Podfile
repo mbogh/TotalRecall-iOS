@@ -8,6 +8,7 @@ target "TotalRecall" do
     pod 'ReactiveCocoa'
     pod 'ReactiveViewModel'
     pod 'TUSafariActivity'
+    pod 'ARChromeActivity'
 end
 
 target "TotalRecallTests" do

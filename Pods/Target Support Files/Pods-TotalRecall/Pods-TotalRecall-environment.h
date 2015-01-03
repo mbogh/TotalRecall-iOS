@@ -6,6 +6,12 @@
 // project.
 
 
+// ARChromeActivity
+#define COCOAPODS_POD_AVAILABLE_ARChromeActivity
+#define COCOAPODS_VERSION_MAJOR_ARChromeActivity 1
+#define COCOAPODS_VERSION_MINOR_ARChromeActivity 0
+#define COCOAPODS_VERSION_PATCH_ARChromeActivity 4
+
 // Aspects
 #define COCOAPODS_POD_AVAILABLE_Aspects
 #define COCOAPODS_VERSION_MAJOR_Aspects 1
