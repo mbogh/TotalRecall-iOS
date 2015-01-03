@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    RAC(self, title) = RACObserve(self.viewModel, title);
+    self.title = @"";
 
     self.webView = [[WKWebView alloc] init];
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;

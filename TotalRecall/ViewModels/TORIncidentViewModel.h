@@ -11,7 +11,6 @@
 @class TORIncident;
 @interface TORIncidentViewModel : RVMViewModel
 @property (strong, readonly, nonatomic) TORIncident *incident;
-@property (strong, readonly, nonatomic) NSString *title;
 @property (strong, readonly, nonatomic) NSString *content;
 - (instancetype)initWithIncident:(TORIncident *)incident;
 @end

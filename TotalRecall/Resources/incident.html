@@ -3,11 +3,35 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <style type="text/css">
-                h1 {
-                    font-size: 1.25em;
+                body {
+                    font-family: "Helvetica Neue";
+                    font-size: 14px;
+                    margin: 0;
+                    padding: 0;
                 }
+
+            article {
+                margin: 15px;
+            }
+
+            header h1 {
+                margin: 0 0 0.5em 0;
+                padding: 0;
+            }
+
+            section.incident-lead {
+                color: rgb(153,153,153);
+            }
+
+            section.incident-explanation {
+
+            }
+
+            h1 {
+                font-size: 1.25em;
+            }
 
             h2 {
                 font-size: 1.125em;
@@ -22,6 +46,10 @@
                 margin: 1em 0;
             }
 
+            strong {
+                font-size: 1em;
+            }
+
             figure {
                 margin: 0;
             }
@@ -30,158 +58,69 @@
                 direction: rtl;
             }
 
-            #article {
+            article {
                 text-rendering: optimizeLegibility;
             }
 
-            #article pre {
+            article pre {
                 white-space: pre-wrap;
             }
 
-            #article * {
-                /* Scale down anything larger than our view. Max-width maintains aspect ratios on images. */
+            article * {
                 max-width: 100%;
             }
 
-            #article img {
-                /* By default, images are centered on their own line. */
+            article img {
                 margin: 0.5em auto;
                 display: block;
                 height: auto;
             }
 
-            #article img.reader-image-tiny {
-                display: inline;
-                margin: 0;
-            }
-
-            #article .leading-image, figure, .auxiliary {
-                margin-bottom: .25em;
-            }
-
-            #article .leading-image img {
-                margin: auto;
-                display: block;
-                clear: both;
-            }
-
-            #article .leading-image .credit {
-                margin: 0;
-                text-align: right;
-            }
-
-            #article .leading-image .caption,
-            #article .leading-image .credit,
-            #article figcaption,
-            #article .auxiliary figcaption {
-                font-size: 0.75em;
-                line-height: 1.5em;
-                margin-top: 1em;
-                width: 100%;
-            }
-
-            #article .leading-image .credit + .caption {
-                margin-top: 0.1em;
-            }
-
-            #article .auxiliary {
-                display: block;
-                clear: both;
-                font-size: 0.75em;
-                line-height: 1.4em;
-                text-align: start;
-            }
-
-            #article .auxiliary > * {
-                -webkit-margin-start: 0;
-            }
-
-            #article .auxiliary img, #article .auxiliary > *:first-child {
-                margin: 0;
-            }
-
-            /* If the element immediately after an image is inline, it might bump up against the image. */
-            #article .auxiliary img + * {
-                display: block;
-            }
-
-            #article .auxiliary figcaption {
-                font-size: 100%;
-            }
-
-            #article .auxiliary * {
-                margin-top: 0.5em;
-                margin-bottom: 0.5em;
-            }
-
-            #article .float.left {
-                float: left;
-                margin-right: 20px;
-            }
-
-            #article .float.right {
-                float: right;
-                margin-left: 20px;
-            }
-
-            #article .clear {
-                clear: both;
-            }
-
-            #article ul.list-style-type-none,
-            #article ol.list-style-type-none,
-            #article .list-style-type-none > li {
-                list-style-type: none;
-                -webkit-padding-start: 0;
-            }
-
             /* Collapse excess whitespace. */
-            .page p > p:empty,
-            .page div > p:empty,
-            .page p > div:empty,
-            .page div > div:empty,
-            .page p + br,
-            .page p > br:only-child,
-            .page div > br:only-child,
-            .page img + br
+            p > p:empty,
+            div > p:empty,
+            p > div:empty,
+            div > div:empty,
+            p + br,
+            p > br:only-child,
+            div > br:only-child,
+            img + br
             {
                 display: none;
             }
 
-            .title {
-                display: none;
-            }
-
-            .page:first-of-type .title {
-                display: block;
-            }
-
-            .page table {
+            table {
                 font-size: 0.9em;
                 text-align: start;
                 word-wrap: break-word;
                 border-collapse: collapse;
             }
-
-            .page table td, .page table th {
+            
+            table td, table th {
                 padding: 0.25em 0.5em;
                 border: 1px solid rgba(0, 0, 0, 0.1);
             }
-
-            .page table th {
+            
+            table th {
                 background-color: rgba(0, 0, 0, 0.025);
             }
-
-            .page a {
+            
+            a {
                 text-decoration: none;
             }
             </style>
             </head>
     <body>
-        <div id="article" tabindex="0" role="article" style="-webkit-locale: en; border-bottom-width: 0px;">
-            <div class="page" style="font-family: 'Helvetica Neue'; font-size: 18px; line-height: 28px;">
-                %@
-            </div>
-        </div>
+        <article>
+            <header>
+                <h1>%@</h1>
+            </header>
+            <section class="incident-lead">
+                <p>%@</p>
+            </section>
+            <section class="incident-explanation">
+                <p>%@</p>
+            </section>
+        </article>
     </body>
 </html>

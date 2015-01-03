@@ -13,7 +13,6 @@
 
 @interface TORIncidentViewModel ()
 @property (strong, nonatomic) TORIncident *incident;
-@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
 @end
 
@@ -23,12 +22,10 @@
     self = [super init];
     if (self) {
         self.incident = incident;
-        
-        RAC(self, title) = RACObserve(self.incident, title);
-        RAC(self, content) = [RACObserve(self.incident, content) map:^id(NSString *content) {
+        RAC(self, content) = [RACSignal combineLatest:@[ [RACObserve(self.incident, title) ignore:nil], [RACObserve(self.incident, summary) ignore:nil], [RACObserve(self.incident, content) ignore:nil] ] reduce:^id(NSString *title, NSString *summary, NSString *content) {
             NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"incident" ofType:@"html"];
             NSString *html = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
-            return [NSString stringWithFormat:html, content];
+            return [NSString stringWithFormat:html, title, summary, content];
         }];
     }
     return self;
