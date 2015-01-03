@@ -63,8 +63,8 @@
 - (void)updateFonts
 {
     self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-    self.summarylabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-    self.dateLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    self.summarylabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    self.dateLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
 }
 
 @end
