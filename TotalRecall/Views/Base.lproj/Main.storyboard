@@ -85,7 +85,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Incident" id="G1N-Zc-Lye"/>
+                    <navigationItem key="navigationItem" title="Incident" id="G1N-Zc-Lye">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="GNv-Cj-i8v"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEN-Ud-Y89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

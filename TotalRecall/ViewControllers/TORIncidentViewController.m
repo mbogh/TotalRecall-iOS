@@ -10,6 +10,11 @@
 
 #import "TORIncidentViewModel.h"
 
+#import "TORIncident.h"
+
+#import <TUSafariActivity.h>
+#import <ARChromeActivity.h>
+
 @import WebKit;
 
 @interface TORIncidentViewController ()
@@ -36,6 +41,19 @@
         [self.webView loadHTMLString:content baseURL:nil];
     }];
 
+    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
+        ARChromeActivity *chromeActivity = [[ARChromeActivity alloc] init];
+        NSArray *activities = @[safariActivity, chromeActivity];
+        TORIncident *incident = self.viewModel.incident;
+        NSURL *url = [NSURL URLWithString:[incident.url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, incident.summary, url] applicationActivities:activities];
+        activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
+        [self presentViewController:activityViewController animated:YES completion:nil];
+        return [RACSignal empty];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
