@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Morten Bøgh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @class TORIncidentViewModel;
 @interface TORIncidentViewController : UIViewController

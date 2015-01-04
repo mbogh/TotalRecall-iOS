@@ -15,8 +15,6 @@
 
 #import "TORIncidentCell.h"
 
-#import <TUSafariActivity/TUSafariActivity.h>
-
 @interface TORIncidentsViewController ()
 @property (strong, nonatomic) TORIncidentsViewModel *viewModel;
 @end

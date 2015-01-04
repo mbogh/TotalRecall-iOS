@@ -8,8 +8,8 @@
 
 #import "TORAppDelegate.h"
 
-#import <Crashlytics/Crashlytics.h>
-#import <Parse/Parse.h>
+@import Crashlytics;
+@import Parse;
 #import <Aspects/Aspects.h>
 
 #import "TORIncident.h"

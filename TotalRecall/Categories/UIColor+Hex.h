@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Morten Bøgh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UIColor (Hex)
 - (NSString *)hexString;

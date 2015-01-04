@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Morten Bøgh. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+@import Parse;
 
 @interface TORIncident : PFObject <PFSubclassing>
 @property (nonatomic, readonly) NSString *title;

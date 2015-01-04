@@ -6,13 +6,12 @@
 //  Copyright (c) 2014 Morten Bøgh. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import <OCMock/OCMock.h>
+@import XCTest;
+@import Parse;
 
+#import <OCMock/OCMock.h>
 #import <Aspects/Aspects.h>
 #import "TORIncidentsViewModel.h"
-#import <Parse/Parse.h>
-
 
 @interface TORIncidentsViewModel (Private)
 @property (strong, nonatomic) PFQuery *query;

@@ -7,7 +7,6 @@
 //
 
 #import "TORIncident.h"
-#import <Parse/PFObject+Subclass.h>
 
 @implementation TORIncident
 @dynamic title, url, publishedAt, modifiedAt, content, summary;
