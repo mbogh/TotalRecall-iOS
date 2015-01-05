@@ -12,7 +12,8 @@
 #import "TORIncidentViewModel.h"
 
 @interface TORIncident (Private)
-@property (nonatomic) NSString *url;
+@property (nonatomic) NSString *content;
+@property (nonatomic) NSString *summary;
 @property (nonatomic) NSString *title;
 @end
 
@@ -30,22 +31,21 @@
     [super tearDown];
 }
 
-- (void)testIncidentURL {
+- (void)testIncidentContent {
     TORIncident *incident = [TORIncident new];
-    incident.url = @"http://example.com";
-    TORIncidentViewModel *viewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
-    XCTAssertTrue([viewModel.incidentURL.absoluteString isEqualToString:incident.url], @"Constructed NSURL object must match incident URL.");
-    
-    incident.url = @"øå¨'2//example.com";
-    viewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
-    XCTAssertTrue(viewModel.incidentURL, @"View Model always returns a non-nil NSURL Object.");
-}
+    incident.content = @"http://example.com";
+    incident.summary = @"";
+    incident.title = @"";
 
-- (void)testIncidentTitle {
-    TORIncident *incident = [TORIncident new];
-    incident.title = @"Morten har fået dårlig mave!";
+    NSError *error = nil;
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"incident" ofType:@"html"];
+    NSString *htmlTemplate = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&error];
+    XCTAssertNil(error, @"Error should be nil, else incident.html is missing from the project.");
+
+    NSString *html = [NSString stringWithFormat:htmlTemplate, incident.title, incident.summary, incident.content];
+
     TORIncidentViewModel *viewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
-    XCTAssertTrue([viewModel.title isEqualToString:incident.title], @"Title returned by View Model must match that of Incident.");
+    XCTAssertTrue([viewModel.content isEqualToString:html], @"Constructed NSURL object must match incident URL.");
 }
 
 @end
