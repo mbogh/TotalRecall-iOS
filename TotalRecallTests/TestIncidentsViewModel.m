@@ -50,7 +50,6 @@
     } error:NULL];
 
     __unused TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
-
     XCTAssertTrue(queryCalled, @"query should be called during init.");
 }
 
@@ -92,14 +91,21 @@
         notificationSettingsCalled = notificationSettings;
     } error:nil];
 
-    [UIApplication aspect_hookSelector:@selector(registerForRemoteNotifications) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
-
-    } error:nil];
-    
     TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
     viewModel.pushEnabled = YES;
     XCTAssertTrue(registerUserNotificationSettingsCalled, @"registerUserNotificationSettings: should be called when enabling push.");
     XCTAssertTrue(notificationSettingsCalled.types == UIUserNotificationTypeAlert, @"registerUserNotificationSettings: should be called with UIRemoteNotificationTypeAlert when enabling push.");
+}
+
+- (void)testThatRegisterForRemoteNotificationsIsCalledWhenEnablingPush {
+    __block BOOL registerForRemoteNotificationsCalled = NO;
+    [UIApplication aspect_hookSelector:@selector(registerForRemoteNotifications) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
+        registerForRemoteNotificationsCalled = YES;
+    } error:nil];
+
+    TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
+    viewModel.pushEnabled = YES;
+    XCTAssertTrue(registerForRemoteNotificationsCalled, @"registerForRemoteNotifications should be called when enabling push.");
 }
 
 - (void)testThatUnregisterForRemoteNotificationsIsCalledWhenDisablingPush {

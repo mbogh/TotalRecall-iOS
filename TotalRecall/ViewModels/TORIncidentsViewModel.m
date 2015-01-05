@@ -34,7 +34,19 @@
         self.loading = NO;
         _pushEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
         [RACObserve(self, pushEnabled) subscribeNext:^(NSNumber *flag) {
-            [[NSUserDefaults standardUserDefaults] setBool:flag.boolValue forKey:TORDefaultsPushMessage];
+            BOOL isPushEnabled = flag.boolValue;
+            UIApplication *application = [UIApplication sharedApplication];
+            if (isPushEnabled) {
+                [(TORAppDelegate *)application.delegate enableNotificationsForApplication:application];
+            }
+            else {
+                [application unregisterForRemoteNotifications];
+                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                [currentInstallation removeObject:@"active" forKey:@"channels"];
+                [currentInstallation saveInBackground];
+            }
+
+            [[NSUserDefaults standardUserDefaults] setBool:isPushEnabled forKey:TORDefaultsPushMessage];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
 
@@ -75,20 +87,6 @@
 }
 
 #pragma mark - Push
-
-- (void)setPushEnabled:(BOOL)pushEnabled {
-    UIApplication *application = [UIApplication sharedApplication];
-    if (pushEnabled) {
-        [(TORAppDelegate *)application.delegate enableNotificationsForApplication:application];
-    }
-    else {
-        [application unregisterForRemoteNotifications];
-        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        [currentInstallation removeObject:@"active" forKey:@"channels"];
-        [currentInstallation saveInBackground];
-    }
-    _pushEnabled = pushEnabled;
-}
 
 - (NSString *)pushTitle {
     return self.isPushEnabled ? LS(@"incidents.push.actionsheet.disable.title") : LS(@"incidents.push.actionsheet.enable.title");
