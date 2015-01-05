@@ -88,7 +88,11 @@
         findObjectsInBackgroundWithBlockCalled = YES;
     };
     [[[mock stub] andDo:completionBlock] findObjectsInBackgroundWithBlock:[OCMArg any]];
-//    viewModel.query = mock;
+    [TORIncidentsViewModel aspect_hookSelector:@selector(query) withOptions:AspectPositionInstead | AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> info) {
+        NSInvocation *invocation = info.originalInvocation;
+        PFQuery *mockQuery = (PFQuery *)mock;
+        [invocation setReturnValue:&mockQuery];
+    } error:nil];
     [viewModel downloadLatestIncidents];
     XCTAssertTrue(findObjectsInBackgroundWithBlockCalled, @"findObjectsInBackgroundWithBlock completionBlock should be called or isLoading will never be false again.");
     [mock stopMocking];
