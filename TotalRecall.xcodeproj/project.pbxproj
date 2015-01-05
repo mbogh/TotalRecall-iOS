@@ -13,8 +13,6 @@
 		5A6FA7F01A557D220014B80E /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6FA7EF1A557D220014B80E /* UIColor+Hex.m */; };
 		5A6FA7F21A55D57A0014B80E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6FA7F11A55D57A0014B80E /* WebKit.framework */; };
 		5A6FA7F41A56D4D70014B80E /* incident.html in Resources */ = {isa = PBXBuildFile; fileRef = 5A6FA7F31A56D4D70014B80E /* incident.html */; };
-		5A6FA7F81A5A911A0014B80E /* TORAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A844C5219010AEC00F9F4B9 /* TORAppDelegate.m */; };
-		5A6FA7F91A5A916F0014B80E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0986D3190FDD86006E8CB4 /* Crashlytics.framework */; };
 		5A844C4319010AEC00F9F4B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A844C4219010AEC00F9F4B9 /* Foundation.framework */; };
 		5A844C4519010AEC00F9F4B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A844C4419010AEC00F9F4B9 /* CoreGraphics.framework */; };
 		5A844C4719010AEC00F9F4B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A844C4619010AEC00F9F4B9 /* UIKit.framework */; };
@@ -113,7 +111,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A6FA7F91A5A916F0014B80E /* Crashlytics.framework in Frameworks */,
 				5A844C6219010AEC00F9F4B9 /* XCTest.framework in Frameworks */,
 				5A844C6419010AEC00F9F4B9 /* UIKit.framework in Frameworks */,
 				5A844C6319010AEC00F9F4B9 /* Foundation.framework in Frameworks */,
@@ -486,7 +483,6 @@
 			files = (
 				5A0BA33F191A62610048E790 /* TestIncidentViewModel.m in Sources */,
 				5A0BA32A1919612F0048E790 /* TestIncidentsViewModel.m in Sources */,
-				5A6FA7F81A5A911A0014B80E /* TORAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

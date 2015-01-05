@@ -7,8 +7,8 @@
 //
 
 @import XCTest;
-@import Parse;
 
+#import <Parse/Parse.h>
 #import <OCMock/OCMock.h>
 #import <Aspects/Aspects.h>
 #import "TORIncidentsViewModel.h"

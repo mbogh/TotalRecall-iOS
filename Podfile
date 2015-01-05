@@ -1,5 +1,5 @@
-platform :ios, '7.0'
 source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
 
 target "TotalRecall" do
     pod 'Parse'
@@ -12,10 +12,5 @@ target "TotalRecall" do
 end
 
 target "TotalRecallTests" do
-    pod 'Parse'
-    pod 'UIColor-HexString'
-    pod 'Aspects'
-    pod 'ReactiveCocoa'
-    pod 'ReactiveViewModel'
     pod 'OCMock'
 end

@@ -32,10 +32,10 @@
 }
 
 - (void)testIncidentContent {
-    TORIncident *incident = [TORIncident new];
+    TORIncident *incident = [TORIncident objectWithoutDataWithClassName:[TORIncident parseClassName] objectId:@"NA"];
     incident.content = @"http://example.com";
-    incident.summary = @"";
-    incident.title = @"";
+    incident.summary = @"fisk";
+    incident.title = @"Fisk";
 
     NSError *error = nil;
     NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"incident" ofType:@"html"];
