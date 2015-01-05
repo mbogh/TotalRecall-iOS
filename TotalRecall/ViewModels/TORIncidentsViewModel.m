@@ -22,14 +22,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        PFQuery *query = [self.query fromLocalDatastore];
-        @weakify(self);
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            @strongify(self);
-            if (!error) {
-                self.incidents = objects;
-            }
-        }];
+        [self fetchCachedIncidents];
 
         self.loading = NO;
         _pushEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:TORDefaultsPushMessage];
@@ -50,6 +43,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
 
+        @weakify(self);
         [self.didBecomeActiveSignal subscribeNext:^(id x) {
             @strongify(self);
             [self downloadLatestIncidents];
@@ -83,6 +77,18 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
         self.loading = NO;
+    }];
+}
+
+- (void)fetchCachedIncidents {
+    PFQuery *query = self.query;
+    query = [query fromLocalDatastore];
+    @weakify(self);
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        @strongify(self);
+        if (!error) {
+            self.incidents = objects;
+        }
     }];
 }
 

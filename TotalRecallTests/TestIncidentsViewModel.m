@@ -14,7 +14,7 @@
 #import "TORIncidentsViewModel.h"
 
 @interface TORIncidentsViewModel (Private)
-@property (strong, nonatomic) PFQuery *query;
+- (void)fetchCachedIncidents;
 @end
 
 @interface TestIncidentsViewModel : XCTestCase
@@ -53,34 +53,34 @@
     XCTAssertTrue(queryCalled, @"query should be called during init.");
 }
 
-- (void)testIfQueryFromLocalIsCalled {
-    __block BOOL fromLocalDatastoreCalled = NO;
-    [PFQuery aspect_hookSelector:@selector(fromLocalDatastore) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
-        fromLocalDatastoreCalled = YES;
+- (void)testIfFetchCachedIncidentsIsCalled {
+    __block BOOL fetchCachedIncidentsCalled = NO;
+    [TORIncidentsViewModel aspect_hookSelector:@selector(fetchCachedIncidents) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
+        fetchCachedIncidentsCalled = YES;
     } error:NULL];
 
     __unused TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
 
-    XCTAssertTrue(fromLocalDatastoreCalled, @"fromLocalDatastore should be called on query during init.");
+    XCTAssertTrue(fetchCachedIncidentsCalled, @"fetchCachedIncidentsCalled should be called during init.");
 }
 
 - (void)testIfIsLoadingIsBeingSetCorrectlyWhenDownloadingIncidents {
-//    TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
-//    XCTAssertFalse(viewModel.isLoading, @"isLoading should be false until a download has been initiated.");
-//    
-//    [viewModel downloadLatestIncidents];
-//    XCTAssertTrue(viewModel.isLoading, @"isLoading should be true immediately after a download has been initiated.");
-//    
-//    __block BOOL findObjectsInBackgroundWithBlockCalled = NO;
-//    id mock = [OCMockObject mockForClass:[PFQuery class]];
-//    void (^completionBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
-//        findObjectsInBackgroundWithBlockCalled = YES;
-//    };
-//    [[[mock stub] andDo:completionBlock] findObjectsInBackgroundWithBlock:[OCMArg any]];
+    TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
+    XCTAssertFalse(viewModel.isLoading, @"isLoading should be false until a download has been initiated.");
+    
+    [viewModel downloadLatestIncidents];
+    XCTAssertTrue(viewModel.isLoading, @"isLoading should be true immediately after a download has been initiated.");
+    
+    __block BOOL findObjectsInBackgroundWithBlockCalled = NO;
+    id mock = [OCMockObject mockForClass:[PFQuery class]];
+    void (^completionBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+        findObjectsInBackgroundWithBlockCalled = YES;
+    };
+    [[[mock stub] andDo:completionBlock] findObjectsInBackgroundWithBlock:[OCMArg any]];
 //    viewModel.query = mock;
-//    [viewModel downloadLatestIncidents];
-//    XCTAssertTrue(findObjectsInBackgroundWithBlockCalled, @"findObjectsInBackgroundWithBlock completionBlock should be called or isLoading will never be false again.");
-//    [mock stopMocking];
+    [viewModel downloadLatestIncidents];
+    XCTAssertTrue(findObjectsInBackgroundWithBlockCalled, @"findObjectsInBackgroundWithBlock completionBlock should be called or isLoading will never be false again.");
+    [mock stopMocking];
 }
 
 - (void)testThatRegisterUserNotificationSettingsIsCalledWhenEnablingPush {
