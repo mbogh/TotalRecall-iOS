@@ -64,6 +64,17 @@
     XCTAssertTrue(fetchCachedIncidentsCalled, @"fetchCachedIncidentsCalled should be called during init.");
 }
 
+- (void)testIfQueryFromLocalIsCalled {
+    __block BOOL fromLocalDatastoreCalled = NO;
+    [PFQuery aspect_hookSelector:@selector(fromLocalDatastore) withOptions:AspectPositionAfter | AspectOptionAutomaticRemoval usingBlock:^{
+        fromLocalDatastoreCalled = YES;
+    } error:NULL];
+
+    __unused TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
+    XCTAssertTrue(fromLocalDatastoreCalled, @"fromLocalDatastore should be called on query during init.");
+}
+
+
 - (void)testIfIsLoadingIsBeingSetCorrectlyWhenDownloadingIncidents {
     TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
     XCTAssertFalse(viewModel.isLoading, @"isLoading should be false until a download has been initiated.");
