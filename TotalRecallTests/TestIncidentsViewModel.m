@@ -74,7 +74,6 @@
     XCTAssertTrue(fromLocalDatastoreCalled, @"fromLocalDatastore should be called on query during init.");
 }
 
-
 - (void)testIfIsLoadingIsBeingSetCorrectlyWhenDownloadingIncidents {
     TORIncidentsViewModel *viewModel = [TORIncidentsViewModel new];
     XCTAssertFalse(viewModel.isLoading, @"isLoading should be false until a download has been initiated.");
