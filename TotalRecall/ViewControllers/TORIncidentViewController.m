@@ -41,7 +41,9 @@
         [self.webView loadHTMLString:content baseURL:nil];
     }];
 
-    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithEnabled:[RACObserve(self, viewModel.incident) map:^id(TORIncident *incident) {
+        return @(incident != nil);
+    }] signalBlock:^RACSignal *(id input) {
         @strongify(self);
         TUSafariActivity *safariActivity = [[TUSafariActivity alloc] init];
         ARChromeActivity *chromeActivity = [[ARChromeActivity alloc] init];
@@ -51,6 +53,7 @@
 
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[incident.title, incident.summary, url] applicationActivities:activities];
         activityViewController.excludedActivityTypes = @[UIActivityTypeAirDrop];
+        activityViewController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
         [self presentViewController:activityViewController animated:YES completion:nil];
         return [RACSignal empty];
     }];
