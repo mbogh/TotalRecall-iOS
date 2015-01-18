@@ -15,8 +15,9 @@
 
 #import "TORIncidentCell.h"
 
-@interface TORIncidentsViewController ()
+@interface TORIncidentsViewController () <UISplitViewControllerDelegate>
 @property (strong, nonatomic) TORIncidentsViewModel *viewModel;
+@property (assign, nonatomic) BOOL shouldCollapseDetailViewController;
 @end
 
 @implementation TORIncidentsViewController
@@ -26,7 +27,8 @@
 
     self.title = LS(@"incidents.title");
 
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.shouldCollapseDetailViewController = YES;
+    self.splitViewController.delegate = self;
 
     self.tableView.tableFooterView = [UIView new];
     self.tableView.estimatedRowHeight = 100.f;
@@ -110,14 +112,23 @@
 #pragma mark - UITableViewDelegate
 
 
+#pragma mark - UISplitViewControllerDelegate
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
+    return self.shouldCollapseDetailViewController;
+}
+
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"TORIncidentViewControllerSegue"]) {
+        self.shouldCollapseDetailViewController = NO;
+
         TORIncidentCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         TORIncident *incident = self.viewModel.incidents[indexPath.row];
-        ((TORIncidentViewController *)segue.destinationViewController).viewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
+        UINavigationController *navigationCotrller = segue.destinationViewController;
+        ((TORIncidentViewController *)navigationCotrller.topViewController).viewModel = [[TORIncidentViewModel alloc] initWithIncident:incident];
     }
 }
 

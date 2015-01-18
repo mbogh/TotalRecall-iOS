@@ -54,6 +54,9 @@
         [self presentViewController:activityViewController animated:YES completion:nil];
         return [RACSignal empty];
     }];
+
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    self.navigationItem.leftItemsSupplementBackButton = YES;
 }
 
 @end

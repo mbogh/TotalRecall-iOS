@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2hU-sk-Ozl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Sbt-Tl-1Zs">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <scenes>
         <!--Incidents-->
@@ -23,13 +23,13 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" placeholderIntrinsicWidth="257" placeholderIntrinsicHeight="65" text="Tilbagekald af Crème Brûlée med afvigende lugt" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="257" translatesAutoresizingMaskIntoConstraints="NO" id="qJP-0G-qhW" userLabel="Title Label">
                                             <rect key="frame" x="15" y="10" width="552" height="65"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEDEGAARD foods A/S tilbagekalder Crème Brûlée på grund af afvigende lugt" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBr-D5-FBJ" userLabel="Summary Label">
                                             <rect key="frame" x="15" y="75" width="552" height="112"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" placeholderIntrinsicWidth="257" placeholderIntrinsicHeight="15" text="02/01/15 15:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTW-3L-ooN" userLabel="Date Label">
@@ -55,7 +55,7 @@
                                     <outlet property="dateLabel" destination="RTW-3L-ooN" id="FsA-Tq-HS0"/>
                                     <outlet property="summarylabel" destination="YBr-D5-FBJ" id="iat-mA-eW7"/>
                                     <outlet property="titleLabel" destination="qJP-0G-qhW" id="CdI-Mn-Fxi"/>
-                                    <segue destination="ZaR-fa-29P" kind="show" identifier="TORIncidentViewControllerSegue" id="y35-Ib-B5r"/>
+                                    <segue destination="3Gs-V0-Y3L" kind="showDetail" identifier="TORIncidentViewControllerSegue" id="q89-1i-YeJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -70,7 +70,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oS-kL-tlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716.25" y="411.97183098591546"/>
+            <point key="canvasLocation" x="684" y="-145"/>
         </scene>
         <!--Incident-->
         <scene sceneID="eHc-NZ-jse">
@@ -91,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEN-Ud-Y89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1445.625" y="411.97183098591546"/>
+            <point key="canvasLocation" x="684" y="823"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gfr-iH-Q89">
@@ -106,10 +106,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHN-RU-aQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-285" y="411.97183098591546"/>
+            <point key="canvasLocation" x="-73" y="-145"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="dyi-yb-gdY">
+            <objects>
+                <splitViewController id="Sbt-Tl-1Zs" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="2hU-sk-Ozl" kind="relationship" relationship="masterViewController" id="1Qq-xe-6ZT"/>
+                        <segue destination="3Gs-V0-Y3L" kind="relationship" relationship="detailViewController" id="E3G-au-cmj"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pk9-vc-i35" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1007" y="371"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="G7u-Gr-m3E">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Gs-V0-Y3L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HcR-yK-WA7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZaR-fa-29P" kind="relationship" relationship="rootViewController" id="pEV-2L-eWV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ffb-il-4dZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-73" y="823"/>
         </scene>
     </scenes>
     <resources>
         <image name="756-bell" width="24" height="28"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="E3G-au-cmj"/>
+    </inferredMetricsTieBreakers>
 </document>
